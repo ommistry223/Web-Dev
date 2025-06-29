@@ -1,17 +1,19 @@
-# 🌐 WebDev Project
+# Web-Dev
+
+## 🚀 WebDev Project
 
 A modern, responsive website built using **HTML**, **CSS**, and **JavaScript** — no frameworks, no libraries, just clean and efficient front-end development.
 
-## 🚀 Features
+## 🧰 Features
 
-- 💡 Clean, semantic HTML5
-- 🎨 Responsive and mobile-friendly CSS
-- ⚡ Vanilla JavaScript for interactivity
-- 🌙 Light/Dark mode toggle
-- 🧩 Modular code and reusable components
-- 💻 Cross-browser compatibility
+- 🧼 Clean, semantic HTML5  
+- 📱 Responsive and mobile-friendly CSS  
+- 🧠 Vanilla JavaScript for interactivity  
+- 🌗 Light/Dark mode toggle  
+- 📦 Modular code and reusable components  
+- 🌐 Cross-browser compatibility  
 
-## 🔧 Getting Started
+## 🛠 Getting Started
 
 To get a local copy up and running:
 
