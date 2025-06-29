@@ -1,0 +1,23 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.heading
+{
+    
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px ;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    
+}
+.link
+{
+    display: flex;
+    gap: 20px;
+    padding-right: 10px;
+}
