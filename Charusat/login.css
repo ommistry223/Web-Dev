@@ -1,0 +1,14 @@
+body
+{
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    border-radius: 2ch;
+    
+}
+.class
+{
+    text-align: center;
+    background-color: honeydew;
+    border: 2px solid black;
+}
