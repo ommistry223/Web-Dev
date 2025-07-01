@@ -1,0 +1,39 @@
+body{
+    display: flex;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+.div1
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 100px;
+    background-color: deepskyblue;
+}
+.div1 .ce
+{
+    padding: 20px;
+    background-color: black;
+    color: aliceblue;
+    text-align: center;
+    justify-content: center;
+}
+.div1 .it
+{
+    padding: 20px;
+    background-color: black;
+    color: aliceblue;
+    text-align: center;
+    justify-content: center;
+}
+.div1 .ec
+{
+    padding: 20px;
+    background-color: black;
+    color: aliceblue;
+    text-align: center;
+
+}

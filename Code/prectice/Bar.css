@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Top Blue Bar */
+.top-bar {
+  background-color: #0263ad;
+  color: white;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.top-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.online-btn {
+  background-color: orange;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+.search-icon {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+/* Logo and Navbar */
+.main-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 60px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 12px;
+  color: #002b5c;
+  line-height: 1.2;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.nav-links a.active {
+  color: green;
+}
+
+.admission-btn {
+  background-color: #ffb099;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+  margin-left: 30px;
+}
