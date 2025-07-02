@@ -3,25 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel = "stylesheet" href = "login.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <table border="1">
-        <div class="class">
-            
-            <h3>Login in</h3>
-            <form action="phy.php" method="post">
-                <label for="Username">Username :</label>
-                <input type="text" id="Username" name="Username" required="Please Enter Username"><br><br>
-                <label for="Password">Password :</label>
-                <input type="password" id="Password" name="Password" required="Please Enter password"><br><br>
-                <input type="submit" value="Login">
-            </form>
-            
+    <div class="login-contect">
+        <div class="head">
+            <h1>Login</h1>
         </div>
+        <form action="Login.php">
+            <div class="input">
+            
+                <input type="text" name="Username" placeholder="Username" required>
+                <i class='bxr  bx-user-circle'  ></i> 
+            </div>
+            
+            <div class="input">
+                <input type="password" name="Password" placeholder="Password" required>
+            
+            </div>
+            
+            <div class="forgot-pass">
+                <div class="remember-me">
+                <label>
+                    <input type="checkbox">Remember Me
+                </label>
+                <a href="#">Forgot Password?</a>
+            </div>
+               
+            </div>
+            <div class="login-button">
+                <button>Login</button>
+            </div>
+            <div class="dont-have-account">
+                <p>Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+        </form> 
         
-
-    </table>
+    </div>
 </body>
 </html>
