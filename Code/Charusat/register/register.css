@@ -1,0 +1,86 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.main
+{
+    border-radius: 20px;
+    background:  #4ca1af;
+    padding: 50px 60px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+
+}
+h1{
+    text-align: center;
+    margin-bottom:20px ;
+}
+.input ,button
+{
+    font-size: 14px;
+    margin: 5px 0 5px 0;
+}
+input
+{
+    border: none;
+    border-radius:5px ;
+    padding: 3px 0 3px 0;
+    width: 100%;
+    transition: 0.5s ease-in-out;
+}
+input:focus
+{
+    border: #0f2027;
+    
+}
+h4
+{
+    margin-bottom: 3px;
+}
+.button
+{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.button button
+{
+    cursor: pointer;
+    border: none;
+    padding:5px 0 5px 0 ;
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-bottom:10px ;
+    width: 100%;
+    transition:all 0.3s ease-out;
+}
+button:hover
+{
+    transform: translateY(-2px);
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #0f2027;
+}
+a{
+    text-decoration: none;
+        transition:all 0.3s ease-out;
+
+}
+a:hover{
+    transform: rotateY(-2px);
+    color: white;
+
+    
+}
