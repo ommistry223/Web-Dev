@@ -1,0 +1,133 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    background-color:rgb(62, 0, 133) ;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.main
+{
+    border-radius: 15px;
+    box-shadow: 0 0 10px hsl(266, 78%, 59%);
+    background-color:rgba(34, 0, 85, 0.721);
+    padding: 60px 80px;
+    transition: all 0.3s ease-in-out;
+}
+.main:hover
+{
+    box-shadow: 4px 4px 30px hsl(266, 78%, 59%);
+    transform: scale3d(1.02, 1.02, 1.02);
+
+}
+.main form
+{
+    padding: 50px 50px;
+    font-size: large;
+}
+h1{
+    font-weight: 600;
+    font-size: 40px;
+    color: hsl(266, 78%, 59%);
+    margin-bottom: 40px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+h1:hover
+{
+    transform: scaleY(1.1);    
+}
+input
+{
+    background-color: rgba(128, 128, 128, 0.066);
+    border-radius: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 7px;
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+    font-weight: 500;
+}
+input:focus
+{
+    outline: none;
+    border: 2px solid hsl(266, 78%, 59%);
+    box-shadow: 0 0 10px hsl(266, 78%, 59%);
+}
+h4{
+    font-size: medium;
+    margin-bottom: 7px;
+}
+.button
+{
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding-left: 6px;
+}
+button
+{
+    border-radius: 8px;
+    margin-top:10px ;
+    margin-bottom: 20px;    
+    width: 100%;
+    padding: 10px;
+    background-color:hsl(266, 78%, 59%);
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+button:hover
+{
+    transform: scale3d(1.05, 1.05, 1.05);
+    background-color: hsl(266, 78%, 59%);
+    box-shadow: 0 0 10px hsl(266, 78%, 59%);
+}
+button:disabled
+{
+    background-color: rgba(0, 0, 0, 0.658);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+button:disabled:hover
+{
+    transform: none;
+    background-color: rgba(0, 0, 0, 0.658);
+    box-shadow: none;
+}
+button:focus
+{
+    outline: none;
+    color: white;
+    background-color: hsl(266, 65%, 39%);
+    box-shadow: 0 0 10px hsl(266, 78%, 59%);
+}
+a{
+    text-decoration: none;
+    color: rgb(0, 157, 255);
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+a:hover
+{
+    color: rgb(0, 157, 255);
+    text-shadow: 0 0 10px rgb(25, 0, 167);
+    text-decoration: underline;
+}
