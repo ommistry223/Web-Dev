@@ -1,0 +1,22 @@
+/* Registration page styles */
+.register-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.register-header {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.register-form input, .register-form select {
+  margin-bottom: 16px;
+}
+.register-form button {
+  margin-top: 12px;
+} 

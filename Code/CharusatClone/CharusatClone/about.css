@@ -1,0 +1,21 @@
+/* About page styles */
+.about-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.about-header {
+  font-size: 2.2rem;
+  color: var(--primary);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.about-content {
+  color: #444;
+  font-size: 1.1rem;
+  line-height: 1.7;
+} 
