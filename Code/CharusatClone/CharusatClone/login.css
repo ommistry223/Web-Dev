@@ -1,0 +1,48 @@
+/* Login page styles */
+.auth-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+  width: 350px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.form-card h2 {
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+.form-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0 18px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #f9fbfd;
+  font-size: 1rem;
+  transition: border var(--transition), box-shadow var(--transition);
+}
+.form-card input:focus {
+  border: 1.5px solid var(--primary-light);
+  outline: none;
+  box-shadow: 0 0 0 2px #cce7ff;
+}
+.form-card button {
+  width: 100%;
+  margin-top: 10px;
+}
+.form-card a {
+  color: var(--primary-light);
+  text-decoration: underline;
+  transition: color var(--transition);
+}
+.form-card a:hover {
+  color: var(--accent);
+} 

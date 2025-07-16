@@ -1,0 +1,30 @@
+/* Result page styles */
+.result-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.result-header {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+}
+.result-table th, .result-table td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+.result-table th {
+  background: var(--primary-light);
+  color: var(--text-light);
+} 

@@ -1,68 +1,120 @@
-*
-{
+/* Reset some default styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-.header
-{
+
+body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: linear-gradient(120deg, #e0e7ff 0%, #f5f7fa 100%);
+    color: #222;
+    min-height: 100vh;
+}
+
+.header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    text-align: center;
-    background-color: white;
-    color: black;
+    background: #2853ff;
+    padding: 18px 40px;
+    box-shadow: 0 2px 8px rgba(46, 16, 101, 0.08);
 }
 
-.header .link
-{
-    gap:5px;
-    display: flex;
-    margin-right: 130px;
-    align-items: center;
-}
-.header .link a
-{
-    text-decoration: none;
-    color: black;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-}
-.header .link a:hover
-{
-    color: rgba(108, 181, 0, 0.678);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-#Enquire
-{
-    background-color:rgb(253, 122, 78) ;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    padding-left: 12px;
-    padding-right: 12px;
-    text-decoration: none;
-    margin-right: 20px;
-    color: white;
-
-}
-#Enquire:hover
-{
-    background-color: rgb(35, 112, 255);
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-img{
-    margin: 5px 0 5px 130px ;
+.img img {
     height: 60px;
+    width: auto;
 }
-.sec-head
-{
-    height: 10rem;
+
+.link {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 24px;
+}
+
+.bar {
+    color: #fff;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.bar:hover,
+.bar:focus {
+    background: #6d28d9;
+    color: #fff;
+}
+
+#Enquire {
+    background: #86efac;
+    color: #166534;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 8px 18px;
+    margin-left: 12px;
+    transition: background 0.2s;
+}
+
+#Enquire:hover {
+    background: #22c55e;
+    color: #fff;
+}
+
+.sec-head {
     text-align: center;
-    background: linear-gradient(to right,rgb(44, 37, 255),rgb(133, 109, 255));
-    color: white;
-    font-size: 4rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.sec-head h1 {
+    font-size: 2.8rem;
+    color: #2853ff;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(46, 16, 101, 0.08);
+    padding: 40px 32px;
+    margin-bottom: 40px;
+}
+
+.content h2 {
+    color:  #2853ff;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.content p {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    line-height: 1.7;
+}
+
+.content ul {
+    margin-left: 24px;
+    margin-bottom: 18px;
+}
+
+.content ul li {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    color: #312e81;
+}
+
+.content a {
+    color: #2563eb;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.content a:hover {
+    color: #6d28d9;
 }

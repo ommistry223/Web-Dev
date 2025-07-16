@@ -1,0 +1,21 @@
+/* Home/Index page styles */
+.hero {
+  min-height: 70vh;
+  background: linear-gradient(120deg, var(--primary-light) 60%, var(--primary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-light);
+  padding: 60px 20px 40px 20px;
+}
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.hero-text p {
+  font-size: 1.3rem;
+  margin-bottom: 28px;
+  opacity: 0.95;
+} 

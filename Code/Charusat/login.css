@@ -12,7 +12,7 @@ body{
     height: 100vh;
     background-color: cornflowerblue;
     height: 100vh;
-    background-image: url('background.jpg');
+background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -24,13 +24,18 @@ body{
 }
 .login-contect
 {
-    border: 5px solid rgba(14, 14, 14, 0.2);
-    background: transparent;
+background-color: #ffffff; /* clean and simple */
     backdrop-filter: blur(20px);
     width: 400px;
-    color: white;
+    color: black;
     padding: 30px 40px;
     border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+.login-contect:hover
+{
+    transform: scale( 1.02);
 }
 .login-contect h1
 {
@@ -51,14 +56,14 @@ body{
     height: 100%;
     border: none;
     background: transparent;
-    border: 2px solid rgba(14, 14, 14, 0.2);
+    border: 2px solid rgb(0, 0, 0);
     border-radius: 40px;
     font-size: 16px;
     padding: 0 20px;
 }
 .input input::placeholder
 {
-    color: aliceblue;
+    color: rgb(0, 0, 0);
 }
 .forgot-pass .remember-me
 {
@@ -74,27 +79,30 @@ body{
 
     display: flex;
     font-size: 14px;
-    color: aliceblue;
+    color: rgb(0, 136, 255);
     margin: 15px 0;
     font-weight: 600;
 }
 .forgot-pass a
 {
     
-    color: white;
+    color: rgb(255, 37, 37);
     text-decoration: none;
     
 }
 .login-contect button
 {
+    color: white;
+    font-weight: 900;
     width: 100%;
     height: 45px;
     border: none;
     border-radius: 40px;
-    background-color: #ffffff;
-    font-weight: 600;
+    background: linear-gradient(135deg, #0f0c29, #8147ff, #24243e);
+    font-weight: 800;
     box-shadow: o o 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    transition: all 0.3s ease-in-out ;
 }
 
 .login-contect .dont-have-account
@@ -106,17 +114,19 @@ body{
 }
 .login-button button:hover
 {
-    
-    background-color: rgba(255, 255, 255, 0.44);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #8147ff, #24243e, #8147ff);
 }
 .login-button button:focus
 {
-    background-color:rgba(18, 17, 17, 0.44) ;
+    background-color:rgba(255, 255, 255, 0.44) ;
 }
 .dont-have-account a{
-    color: white;
+    color: rgb(0, 136, 255);
     text-decoration: none;
     font-weight: 600;
+    transition: all 0.3s ease-in-out;
 }
 .dont-have-account a:hover{
     text-decoration: underline;

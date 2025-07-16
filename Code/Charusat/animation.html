@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Image Carousel</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    .carousel {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spin 20s linear infinite;
+    }
+
+    .carousel img {
+      position: absolute;
+      width: 180px;
+      height: 120px;
+      object-fit: cover;
+      left: 110px;
+      top: 140px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotateY(0deg) rotateX(10deg);
+      }
+      to {
+        transform: rotateY(360deg) rotateX(10deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <!-- Add as many images as you like -->
+    <img src="im1.jpeg" style="transform: rotateY(0deg) translateZ(400px);" />
+    <img src="im2.jpeg" style="transform: rotateY(36deg) translateZ(400px);" />
+    <img src="im3.webp" style="transform: rotateY(72deg) translateZ(400px);" />
+    <img src="im4.jpeg" style="transform: rotateY(108deg) translateZ(400px);" />
+    <img src="im5.jpeg" style="transform: rotateY(144deg) translateZ(400px);" />
+    <img src="im6.jpeg" style="transform: rotateY(180deg) translateZ(400px);" />
+    <img src="im7.jpeg" style="transform: rotateY(216deg) translateZ(400px);" />
+    <img src="im8.jpeg" style="transform: rotateY(252deg) translateZ(400px);" />
+    <img src="im9.jpeg" style="transform: rotateY(288deg) translateZ(400px);" />
+    <img src="im10.jpeg" style="transform: rotateY(324deg) translateZ(400px);" />
+  </div>
+</body>
+</html>

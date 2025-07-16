@@ -1,0 +1,23 @@
+/* Feedback page styles */
+.feedback-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.feedback-header {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.feedback-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.feedback-form button {
+  margin-top: 16px;
+} 
