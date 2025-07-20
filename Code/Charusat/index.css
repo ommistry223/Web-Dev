@@ -70,7 +70,7 @@ a:link
      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 img{
-    margin: 5px 0 5px 130px ;
+    margin: 5px 0 5px 90px ;
     height: 60px;
 }
 .bar{
@@ -110,7 +110,7 @@ img{
     border-radius: 5px;
 }
 .link{
-    margin-right: 130px;
+    margin-right: 90px;
     display: flex;
     justify-content: center;
 }
