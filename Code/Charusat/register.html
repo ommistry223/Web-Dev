@@ -8,40 +8,36 @@
 </head>
 <body>
     <div class="main">
-        <div class="head">
-            <h1>Register</h1>
-        </div>
+        <h1>Register</h1>
         <form>
-            <div class="input">
-                <h4>Full Name :</h4>
+            <div class="form-row">
+                <label for="Full-Name">Full Name :</label>
                 <input type="text" id="Full-Name" placeholder="Full-Name..." required>
             </div>
-            <div class="input">
-                <h4>Email Address :</h4>
+            <div class="form-row">
+                <label for="email">Email Address :</label>
                 <input type="email" id="email" placeholder="Email..." required>
             </div>
-            <div class="input">
-                <h4>Username :</h4>
+            <div class="form-row">
+                <label for="Username">Username :</label>
                 <input type="text" id="Username" placeholder="Username..." required>
             </div>
-            <div class="input">
-                <h4>Password :</h4>
-                <input type="password" class="password" placeholder="Password..." required>
+            <div class="form-row">
+                <label for="password">Password :</label>
+                <input type="password" id="password" placeholder="Password..." required>
             </div>
-            <div class="input">
-                <h4>Confirm Password :</h4>
-                <input type="password" class="password" placeholder="Password..." required>
+            <div class="form-row">
+                <label for="confirm">Confirm Password :</label>
+                <input type="password" id="confirm" placeholder="Password..." required>
             </div>
             <div class="button">
-                <button>Register</button>
+                <button type="submit">Register</button>
             </div>
             <div class="have-account">
-                Already have-account,
+                Already have an account?
                 <a href="login.html">Login</a>
             </div>
-            
         </form>
     </div>
-
 </body>
-</html>`
+</html>

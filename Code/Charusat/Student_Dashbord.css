@@ -1,0 +1,220 @@
+body {
+    background: #f3f4f6;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: #2853ff;
+    color: #fff;
+    width: 240px;
+    padding: 36px 18px;
+    box-shadow: 2px 0 16px #2853ff44;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 12px #203a4344;
+}
+
+.profile h2 {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.profile .role {
+    background: #203a43;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.sidebar nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar nav a.active,
+.sidebar nav a:hover {
+    background: #fff;
+    color: #2853ff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 36px 40px;
+    background: #fff;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #203a43;
+    font-weight: 700;
+}
+
+.status {
+    padding: 6px 18px;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #e7fbe7;
+    color: #22c55e;
+    box-shadow: 0 2px 8px #22c55e22;
+}
+
+.shortcuts {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.shortcut-card {
+    background: #e0e7ff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #2853ff22;
+    padding: 18px 14px;
+    text-align: center;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #203a43;
+    font-weight: 600;
+    transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+}
+
+.shortcut-card img {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px #2853ff22;
+}
+
+.shortcut-card:hover {
+    box-shadow: 0 6px 24px #2853ff44;
+    transform: translateY(-4px) scale(1.05);
+    background: #c4e0e5;
+    color: #2853ff;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: #e0e7ff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #2853ff22;
+    padding: 28px 18px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.card:hover {
+    box-shadow: 0 6px 24px #2853ff44;
+    transform: translateY(-4px) scale(1.03);
+}
+
+.card h3 {
+    color: #203a43;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 1.7rem;
+    color: #2853ff;
+    font-weight: 700;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 8px;
+    }
+    .main-content {
+        padding: 18px 6px;
+    }
+    .shortcuts {
+        gap: 12px;
+    }
+    .info-cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .shortcuts {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+  }

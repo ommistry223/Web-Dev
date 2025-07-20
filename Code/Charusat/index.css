@@ -180,13 +180,23 @@ h1{
 }
 .marquee {
     width: 100%;
-    background: linear-gradient(to right, black, #4ca1af, black);
-    animation: linear ;
+    background: linear-gradient(270deg, #203a43, #4ca1af, #4891ff, #203a43);
+    background-size: 400% 400%;
     color: white;
     padding: 20px 0;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
+    animation: gradiantMove 8s ease-in-out infinite;
+
+}
+.video .video-container {
+    display: flex;
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
 }
 @keyframes gradiantMove {
     0%
