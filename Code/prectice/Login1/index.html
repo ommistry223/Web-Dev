@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Animated Login Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #5B86E5; /* Blue */
+            --secondary-color: #36D1DC; /* Cyan */
+            --text-color: #333;
+            --white-fade: rgba(255, 255, 255, 0.2);
+            --white-blur: rgba(255, 255, 255, 0.15);
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-size: 400% 400%;
+            animation: backgroundGradient 20s ease infinite; /* Slow, mesmerizing background animation */
+            color: #fff;
+            overflow: hidden; /* Prevent scrollbars from background */
+            position: relative;
+        }
+
+        /* Keyframe for background gradient animation */
+        @keyframes backgroundGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particle/Decoration effect (simple CSS dots) */
+        .decor-dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatAndFade 15s infinite ease-in-out;
+            opacity: 0;
+        }
+        .decor-dot:nth-child(1) { width: 15px; height: 15px; top: 10%; left: 20%; animation-delay: 0s; }
+        .decor-dot:nth-child(2) { width: 25px; height: 25px; top: 50%; left: 80%; animation-delay: 2s; }
+        .decor-dot:nth-child(3) { width: 20px; height: 20px; top: 80%; left: 40%; animation-delay: 4s; }
+        .decor-dot:nth-child(4) { width: 10px; height: 10px; top: 30%; left: 60%; animation-delay: 6s; }
+        .decor-dot:nth-child(5) { width: 30px; height: 30px; top: 70%; left: 10%; animation-delay: 8s; }
+
+        @keyframes floatAndFade {
+            0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+            25% { opacity: 1; }
+            50% { transform: translateY(-50px) translateX(20px) scale(1); opacity: 0.8; }
+            75% { opacity: 0.5; }
+            100% { transform: translateY(-100px) translateX(-40px) scale(0.5); opacity: 0; }
+        }
+
+        .login-wrapper {
+            perspective: 1000px; /* For 3D transform on hover */
+        }
+
+        .login-container {
+            background-color: var(--white-blur);
+            padding: 40px 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px); /* Stronger frosted glass */
+            -webkit-backdrop-filter: blur(15px); /* For Safari support */
+            box-shadow: 0 10px 40px var(--shadow-dark);
+            text-align: center;
+            width: 380px;
+            max-width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+
+            /* Initial animation for the form itself */
+            transform: translateY(30px) scale(0.9);
+            opacity: 0;
+            animation: formEntrance 1s ease-out forwards;
+            animation-delay: 0.5s; /* Delay form appearance slightly after background */
+            position: relative; /* For ripple effect */
+            transition: transform 0.5s ease; /* For wrapper hover */
+        }
+
+        .login-wrapper:hover .login-container {
+            transform: translateY(0px) scale(1.02); /* Slight scale on hover for depth */
+            box-shadow: 0 15px 50px var(--shadow-dark);
+        }
+
+        @keyframes formEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        h2 {
+            margin-bottom: 35px;
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff; /* White for heading */
+            text-shadow: 0 2px 5px var(--shadow-light);
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: headingFadeIn 0.8s ease-out forwards;
+            animation-delay: 1s; /* After form entrance */
+        }
+
+        @keyframes headingFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: calc(100% - 30px); /* Adjust for padding */
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--white-fade);
+            color: #fff;
+            font-size: 1.1em;
+            outline: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .input-group input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px); /* Slight lift on focus */
+        }
+
+        /* Fancy placeholder animation on focus */
+        .input-group input:focus::placeholder {
+            transform: translateY(-20px) scale(0.8);
+            opacity: 0;
+        }
+
+        .login-btn {
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.25em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden; /* For ripple effect */
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .login-btn:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(0.9);
+        }
+
+        /* Loading spinner inside button */
+        .login-btn.loading {
+            pointer-events: none; /* Disable clicks while loading */
+            opacity: 0.8;
+        }
+
+        .login-btn .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .login-btn.loading .spinner {
+            display: block;
+        }
+        .login-btn.loading .btn-text {
+            opacity: 0;
+        }
+
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Error/Success Messages */
+        .message {
+            margin-top: 20px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .message.error {
+            background-color: rgba(231, 76, 60, 0.8);
+            color: white;
+        }
+
+        .message.success {
+            background-color: rgba(46, 204, 113, 0.8);
+            color: white;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* "Don't have an account?" link */
+        p {
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        p a {
+            color: var(--secondary-color); /* Match button vibrant color */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        p a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Simple ripple effect (JavaScript triggered) */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: ripple 0.6s linear forwards;
+            transform: scale(0);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(2.5); /* Adjust based on button size */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decor-dot"></div>
+    <div class="decor-dot"></div>
+    <div class="decor-dot"></div>
+    <div class="decor-dot"></div>
+    <div class="decor-dot"></div>
+
+    <div class="login-wrapper">
+        <div class="login-container">
+            <h2>Sign In</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Username" required autocomplete="username">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Login</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+            <div id="message" class="message"></div>
+            <p>
+                Don't have an account? <a href="#">Create One</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const loginButton = loginForm.querySelector('.login-btn');
+            const messageDiv = document.getElementById('message');
+
+            // Simulate Ripple Effect on Button Click
+            loginButton.addEventListener('click', function(e) {
+                const button = e.currentTarget;
+                const circle = document.createElement('span');
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - (button.getBoundingClientRect().left + radius)}px`;
+                circle.style.top = `${e.clientY - (button.getBoundingClientRect().top + radius)}px`;
+                circle.classList.add('ripple');
+
+                const ripple = button.getElementsByClassName('ripple')[0];
+
+                if (ripple) {
+                    ripple.remove();
+                }
+
+                button.appendChild(circle);
+            });
+
+
+            // Simulate Login Process with Loading State
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+
+                // Hide any previous messages
+                messageDiv.classList.remove('show', 'error', 'success');
+
+                // Show loading spinner
+                loginButton.classList.add('loading');
+                loginButton.setAttribute('disabled', 'true');
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    // Remove loading spinner
+                    loginButton.classList.remove('loading');
+                    loginButton.removeAttribute('disabled');
+
+                    // Simulate login success or failure
+                    if (username === 'user' && password === 'pass') { // Example credentials
+                        showMessage('Login successful! Redirecting...', 'success');
+                        setTimeout(() => {
+                            // In a real application, you'd redirect here
+                            // window.location.href = '/dashboard';
+                            alert('Logged in successfully!');
+                        }, 1000);
+                    } else {
+                        showMessage('Invalid username or password. Please try again.', 'error');
+                        // Add a subtle "shake" effect to the form on error
+                        const loginContainer = document.querySelector('.login-container');
+                        loginContainer.style.animation = 'shake 0.5s';
+                        setTimeout(() => {
+                            loginContainer.style.animation = ''; // Remove animation after it finishes
+                        }, 500);
+                    }
+                }, 2000); // 2 second delay for simulation
+            });
+
+            function showMessage(msg, type) {
+                messageDiv.textContent = msg;
+                messageDiv.className = 'message'; // Reset classes
+                messageDiv.classList.add(type);
+                // Trigger reflow to restart transition if same message type shown repeatedly
+                void messageDiv.offsetWidth;
+                messageDiv.classList.add('show');
+            }
+
+            // CSS Keyframe for shake effect
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes shake {
+                    0% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    50% { transform: translateX(5px); }
+                    75% { transform: translateX(-5px); }
+                    100% { transform: translateX(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
