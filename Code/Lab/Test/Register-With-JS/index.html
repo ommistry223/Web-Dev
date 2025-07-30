@@ -1,39 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
 <body>
-  <h3 id="head">Todays Date ::</h3>
-  <button id="btn">Click me</button>
-  <button id="btn1">Add element</button>
-  <button id="btn2">Remove element</button>
-
+  <h1>Hello</h1>
+  <h3>Hi</h3>
+  <form name="myform">
+    <input type="text" name="firstname" placeholder="Enter First Name">
+    <input type="text" name="lastname" placeholder="Enter Last Name">
+  </form>
+  <button name="btn" type="button" onclick="checkName()">Submit</button>
+  <div name="output"></div>
   <script>
-    const h3 = document.getElementById('head');
-    const btn = document.getElementById('btn');
-    const btn2 = document.getElementById('btn2');
-
-    btn.addEventListener('click', function () {
-      const currentDate = new Date().toLocaleDateString(); // Formats the date nicely
-      h3.textContent = `Today's date is ${currentDate}`;
-    });
-
-    btn1.addEventListener('click', () => {
-        const para = document.createElement('p');
-      // para.setAttribute('id', 'p1');
-      para.className = 'p1';
-      para.textContent = 'this is paregraph';
-      document.body.appendChild(para);
-      });
-    btn1.addEventListener('click', () => {
-        const para = document.querySelectorAll
-      });
-
+    function checkName() {
+      const fname = document.myform.firstname.value;
+      const lname = document.myform.lastname.value;
+      const heading = document.createElement("h1");
+      heading.id = "title";
+      heading.textContent = fname + " " + lname;
+      const btn = document.getElementsByName("btn")[0];
+      btn.parentNode.replaceChild(heading, btn.ariaPlaceholder);
+    }
   </script>
 </body>
 
