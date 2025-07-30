@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submit handler
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         let isValid = true;
         inputs.forEach(input => {
             if (!validateField(input)) {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         resultContainer.style.display = 'block';
-        
+
         // Scroll to results
         resultContainer.scrollIntoView({ behavior: 'smooth' });
 
