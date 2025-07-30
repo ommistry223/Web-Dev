@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3 id="head">Todays Date ::</h3>
+  <button id="btn">Click me</button>
+  <button id="btn1">Add element</button>
+  <button id="btn2">Remove element</button>
+
+  <script>
+    const h3 = document.getElementById('head');
+    const btn = document.getElementById('btn');
+    const btn2 = document.getElementById('btn2');
+
+    btn.addEventListener('click', function () {
+      const currentDate = new Date().toLocaleDateString(); // Formats the date nicely
+      h3.textContent = `Today's date is ${currentDate}`;
+    });
+
+    btn1.addEventListener('click', () => {
+        const para = document.createElement('p');
+      // para.setAttribute('id', 'p1');
+      para.className = 'p1';
+      para.textContent = 'this is paregraph';
+      document.body.appendChild(para);
+      });
+    btn1.addEventListener('click', () => {
+        const para = document.querySelectorAll
+      });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(130deg, #0f2027 0%, #203a43 80%, #4ca1af 100%);
+            font-family: 'Segoe UI', 'Lucida Sans', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .main {
+            border-radius: 24px;
+            background: linear-gradient(120deg, #f3f4f6 60%, #c4e0e5 100%);
+            padding: 24px 32px;
+            box-shadow: 0 10px 32px rgba(15,32,39,0.18);
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #203a43;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px #c4e0e5;
+            width: 100%;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1px;
+            width: 100%;
+            margin-bottom: 3px;
+        }
+
+        .form-row label {
+            text-align: left;
+            color: #203a43;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+            padding-left: 2px;
+        }
+
+        .form-row input {
+            border: none;
+            border-radius: 10px;
+            padding: 9px;
+            background: #e0e7ff;
+            color: #222;
+            font-size: 1.08rem;
+            font-weight: 500;
+            transition: border 0.3s, box-shadow 0.3s, background 0.2s;
+            box-shadow: 0 2px 10px rgba(76, 161, 175, 0.10);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-row input:focus {
+            outline: none;
+            border: 2px solid #4ca1af;
+            box-shadow: 0 0 12px #4ca1af;
+            background: #fff;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            margin-top: 6px;
+            width: 100%;
+        }
+
+        .button button {
+            cursor: pointer;
+            border: none;
+            padding: 14px 0;
+            border-radius: 24px;
+            width: 100%;
+            background: linear-gradient(90deg, #4ca1af 60%, #203a43 100%);
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px rgba(76,161,175,0.12);
+        }
+
+        .button button:hover {
+            transform: translateY(-2px) scale(1.04);
+            background: linear-gradient(90deg, #203a43 60%, #4ca1af 100%);
+            box-shadow: 0 4px 16px #4ca1af55;
+        }
+
+        .have-account {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 1rem;
+            color: #203a43;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4ca1af;
+            font-weight: 600;
+            transition: color 0.2s, text-shadow 0.2s;
+        }
+
+        a:hover {
+            color: #203a43;
+            text-shadow: 0 0 8px #4ca1af;
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: block;
+            min-height: 16px;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            display: none;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .main {
+                padding: 20px 15px;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Register</h1>
+        <form onsubmit="return validateForm()">
+            <div class="form-row">
+                <label for="Full-Name">Full Name :</label>
+                <input type="text" id="Full-Name" placeholder="Full-Name..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this)">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-row">
+                <label for="Student-ID">Student-ID :</label>
+                <input type="text" id="Student-ID" placeholder="Student-ID..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this)">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-row">
+                <label for="email">Email Address :</label>
+                <input type="email" id="email" placeholder="Email..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this)">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-row">
+                <label for="Username">Username :</label>
+                <input type="text" id="Username" placeholder="Username..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this)">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-row">
+                <label for="password">Password :</label>
+                <input type="password" id="password" placeholder="Password..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this); if(this.value.length > 0) document.getElementById('confirm').dispatchEvent(new Event('input'))">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-row">
+                <label for="confirm">Confirm Password :</label>
+                <input type="password" id="confirm" placeholder="Password..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this)">
+                <span class="error-message"></span>
+            </div>
+            <div class="form-row">
+                <label for="Phone-No">Phone-No :</label>
+                <input type="number" id="Phone-No" placeholder="Phone-No..." required
+                       onblur="validateField(this)"
+                       oninput="clearError(this)">
+                <span class="error-message"></span>
+            </div>
+            <div class="button">
+                <button type="submit">Register</button>
+            </div>
+            <div class="have-account">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </div>
+        </form>
+        <div id="resultContainer" class="result-container" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Regular expressions
+        const nameRegex = /^[a-zA-Z\s]{2,}$/;
+        const studentIdRegex = /^[a-zA-Z0-9]{6,}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const usernameRegex = /^[a-zA-Z0-9]{5,15}$/;
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+        const phoneRegex = /^[0-9]{10}$/;
+
+        function validateField(input) {
+            const value = input.value.trim();
+            const errorMsg = input.parentNode.querySelector('.error-message');
+            let isValid = true;
+
+            // Clear previous errors
+            clearError(input);
+
+            // Required field validation
+            if (input.required && !value) {
+                showError(input, errorMsg, 'This field is required');
+                return false;
+            }
+
+            // Field-specific validation
+            switch(input.id) {
+                case 'Full-Name':
+                    if (!nameRegex.test(value)) {
+                        showError(input, errorMsg, 'Only letters and spaces (min 2 characters)');
+                        isValid = false;
+                    }
+                    break;
+                case 'Student-ID':
+                    if (!studentIdRegex.test(value)) {
+                        showError(input, errorMsg, 'Only alphanumeric characters (min 6 characters)');
+                        isValid = false;
+                    }
+                    break;
+                case 'email':
+                    if (!emailRegex.test(value)) {
+                        showError(input, errorMsg, 'Please enter a valid email address');
+                        isValid = false;
+                    }
+                    break;
+                case 'Username':
+                    if (!usernameRegex.test(value)) {
+                        showError(input, errorMsg, '5-15 alphanumeric characters only');
+                        isValid = false;
+                    }
+                    break;
+                case 'password':
+                    if (!passwordRegex.test(value)) {
+                        showError(input, errorMsg, '8+ chars with 1 letter, 1 digit, and 1 special character (@$!%*?&)');
+                        isValid = false;
+                    }
+                    break;
+                case 'confirm':
+                    const password = document.getElementById('password').value;
+                    if (value !== password) {
+                        showError(input, errorMsg, 'Passwords do not match');
+                        isValid = false;
+                    }
+                    break;
+                case 'Phone-No':
+                    if (!phoneRegex.test(value)) {
+                        showError(input, errorMsg, 'Must be exactly 10 digits');
+                        isValid = false;
+                    }
+                    break;
+            }
+
+            return isValid;
+        }
+
+        function showError(input, errorMsg, message) {
+            errorMsg.textContent = message;
+            input.style.border = '2px solid #dc3545';
+            input.style.backgroundColor = '#fff5f5';
+            input.style.boxShadow = '0 0 0 2px rgba(220, 53, 69, 0.2)';
+        }
+
+        function clearError(input) {
+            const errorMsg = input.parentNode.querySelector('.error-message');
+            errorMsg.textContent = '';
+            input.style.border = 'none';
+            input.style.backgroundColor = '#e0e7ff';
+            input.style.boxShadow = '0 2px 10px rgba(76, 161, 175, 0.10)';
+        }
+
+        function validateForm() {
+            const inputs = document.querySelectorAll('input');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!validateField(input)) {
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                displayResults();
+            }
+
+            return false; // Prevent form submission
+        }
+
+        function displayResults() {
+            const inputs = document.querySelectorAll('input');
+            const formData = {};
+
+            inputs.forEach(input => {
+                formData[input.id] = input.value.trim();
+            });
+
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = `
+                <h2 style="color: #203a43; margin-bottom: 15px; text-align: center;">Registration Successful!</h2>
+                <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <p><strong>Full Name:</strong> ${formData['Full-Name']}</p>
+                    <p><strong>Student ID:</strong> ${formData['Student-ID']}</p>
+                    <p><strong>Email:</strong> ${formData['email']}</p>
+                    <p><strong>Username:</strong> ${formData['Username']}</p>
+                    <p><strong>Phone Number:</strong> ${formData['Phone-No']}</p>
+                </div>
+                <button onclick="closeResults()" style="margin-top: 15px; width: 100%; padding: 10px; background: #4ca1af; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    Close
+                </button>
+            `;
+
+            resultContainer.style.display = 'block';
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeResults() {
+            const resultContainer = document.getElementById('resultContainer');
+            resultContainer.style.display = 'none';
+            document.querySelector('form').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
