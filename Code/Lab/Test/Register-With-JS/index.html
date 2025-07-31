@@ -5,7 +5,8 @@
     <input type="text" name="firstname" placeholder="Enter First Name">
     <input type="text" name="lastname" placeholder="Enter Last Name">
   </form>
-  <button name="btn" type="button" onclick="checkName()">Submit</button>
+  <button name="btn1" type="button" onclick="checkName()">Submit</button>
+  <button name="btn2" type="button" onclick="Remove()">Remove</button>
   <div name="output"></div>
   <script>
     function checkName() {
@@ -14,8 +15,16 @@
       const heading = document.createElement("h1");
       heading.id = "title";
       heading.textContent = fname + " " + lname;
-      const btn = document.getElementsByName("btn")[0];
-      btn.parentNode.replaceChild(heading, btn.ariaPlaceholder);
+      const btn1 = document.getElementsByName("btn1")[0];
+      btn1.parentNode.replaceChild(heading, btn1);
+    }
+    function Remove()
+    {
+      // const par = document.querySelectorAll('#title');
+      // par.forEach(h1=>h1.remove());
+
+      const par = document.querySelectorAll('#title');
+      par.forEach(p => p.remove());
     }
   </script>
 </body>
