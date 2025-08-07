@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    ul {
+      background-color: beige;
+      width: 100%;
+
+      list-style-type: none;
+
+
+    }
+    li {
+
+      margin: 10px 5px;
+      padding: 20px 0 ;
+    }
+    .delete-btn {
+      margin-left: 10px;
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="itemInput" placeholder="Enter item">
+  <button onclick="addItem()">Add Item</button>
+  <button onclick="clearList()">Clear All</button>
+  <ul id="itemList"></ul>
+  <script>
+    function addItem(){
+      let input = document.getElementById("itemInput");
+      let text = input.value.trim();
+
+      if(text === "")
+    {
+        alert("Please enter something!");
+        return;
+      } else {
+        let li = document.createElement("li");
+        li.innerText = text;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.classList.add("delete-btn");
+
+        deleteBtn.onclick = function () {
+          li.remove();
+        };
+
+        li.appendChild(deleteBtn);
+        document.getElementById("itemList").appendChild(li);
+
+
+        input.value = ""
+      }
+    }
+    function clearList() {
+      document.getElementById("itemList").innerHTML = "";
+    }
+
+  </script>
+</body>
+</html>

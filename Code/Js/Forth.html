@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Character Counter</title>
+  <style>
+    #progress {
+      height: 20px;
+      width: 0%;
+      background-color: green;
+      transition: width 0.3s;
+    }
+
+    #bar-container {
+      width: 100%;
+      height: 20px;
+      background-color: #ddd;
+      margin-top: 10px;
+    }
+
+    #warning {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Type something (max 100 characters)</h2>
+  <textarea id="myInput" rows="4" cols="50" placeholder="Start typing..."></textarea>
+  <p>Characters used: <span id="charCount">0</span>/100</p>
+
+  <div id="bar-container">
+    <div id="progress"></div>
+  </div>
+
+  <p id="warning"></p>
+
+  <script>
+    const input = document.getElementById("myInput");
+    const count = document.getElementById("charCount");
+    const warning = document.getElementById("warning");
+    const progress = document.getElementById("progress");
+
+    input.addEventListener("input", () => {
+      const maxLength = 100;
+      const text = input.value;
+      const length = text.length;
+
+      count.innerText = length;
+
+      if (length > maxLength) {
+        warning.innerText = "❌ You have exceeded the character limit!";
+        input.style.borderColor = "red";
+      } else {
+        warning.innerText = "";
+        input.style.borderColor = "";
+      }
+
+      const percent = Math.min(length / maxLength * 100, 100);
+      progress.style.width = percent + "%";
+
+      if (percent > 80) {
+        progress.style.backgroundColor = "orange";
+      } else if (percent > 50) {
+        progress.style.backgroundColor = "yellowgreen";
+      } else {
+        progress.style.backgroundColor = "green";
+      }
+    });
+  </script>
+
+</body>
+
+</html>

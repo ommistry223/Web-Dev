@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple DOM Tutorial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      color: #333;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+    }
+
+    .example {
+      background: #f8f9fa;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid #007bff;
+      border-radius: 4px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    input,
+    textarea {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 200px;
+      margin: 5px;
+    }
+
+    .highlight {
+      background-color: yellow !important;
+      padding: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .todo-item {
+      background: white;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .completed {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    code {
+      background: #e9ecef;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🚀 Simple DOM Tutorial</h1>
+  <p>Learn DOM manipulation with easy examples!</p>
+
+  <!-- 1. CHANGE TEXT -->
+  <div class="section">
+    <h2>1. Change Text Content</h2>
+    <div class="example">
+      <p id="demo-text">Hello World!</p>
+      <button onclick="changeText()">Change Text</button>
+      <button onclick="resetText()">Reset</button>
+    </div>
+    <p><strong>Code:</strong></p>
+    <code>document.getElementById('demo-text').textContent = 'New text!';</code>
+  </div>
+
+  <!-- 2. CHANGE STYLES -->
+  <div class="section">
+    <h2>2. Change Styles</h2>
+    <div class="example">
+      <p id="style-text">Style me!</p>
+      <button onclick="makeRed()">Make Red</button>
+      <button onclick="makeBig()">Make Big</button>
+      <button onclick="addHighlight()">Highlight</button>
+      <button onclick="resetStyle()">Reset</button>
+    </div>
+    <p><strong>Code:</strong></p>
+    <code>element.style.color = 'red';</code><br>
+    <code>element.classList.add('highlight');</code>
+  </div>
+
+  <!-- 3. SHOW/HIDE -->
+  <div class="section">
+    <h2>3. Show/Hide Elements</h2>
+    <div class="example">
+      <p id="toggle-text">Now you see me!</p>
+      <button onclick="hide()">Hide</button>
+      <button onclick="show()">Show</button>
+      <button onclick="toggle()">Toggle</button>
+    </div>
+    <p><strong>Code:</strong></p>
+    <code>element.classList.toggle('hidden');</code>
+  </div>
+
+  <!-- 4. GET INPUT VALUES -->
+  <div class="section">
+    <h2>4. Get Input Values</h2>
+    <div class="example">
+      <input type="text" id="name-input" placeholder="Enter your name">
+      <button onclick="greetUser()">Greet Me</button>
+      <p id="greeting"></p>
+    </div>
+    <p><strong>Code:</strong></p>
+    <code>const value = document.getElementById('name-input').value;</code>
+  </div>
+
+  <!-- 5. ADD/REMOVE ELEMENTS -->
+  <div class="section">
+    <h2>5. Add/Remove Elements</h2>
+    <div class="example">
+      <input type="text" id="item-input" placeholder="Enter item">
+      <button onclick="addItem()">Add Item</button>
+      <button onclick="clearAll()">Clear All</button>
+      <div id="item-list"></div>
+    </div>
+    <p><strong>Code:</strong></p>
+    <code>const newElement = document.createElement('div');</code><br>
+    <code>parent.appendChild(newElement);</code>
+  </div>
+
+  <!-- 6. SIMPLE TODO APP -->
+  <div class="section">
+    <h2>6. Simple Todo App</h2>
+    <div class="example">
+      <input type="text" id="todo-input" placeholder="Enter todo">
+      <button onclick="addTodo()">Add Todo</button>
+      <div id="todo-list"></div>
+    </div>
+    <p><strong>Code combines all above concepts!</strong></p>
+  </div>
+
+  <script>
+    // 1. CHANGE TEXT
+    function changeText() {
+      document.getElementById('demo-text').textContent = 'Text changed with JavaScript!';
+    }
+
+    function resetText() {
+      document.getElementById('demo-text').textContent = 'Hello World!';
+    }
+
+    // 2. CHANGE STYLES
+    function makeRed() {
+      document.getElementById('style-text').style.color = 'red';
+    }
+
+    function makeBig() {
+      document.getElementById('style-text').style.fontSize = '24px';
+    }
+
+    function addHighlight() {
+      document.getElementById('style-text').classList.add('highlight');
+    }
+
+    function resetStyle() {
+      const element = document.getElementById('style-text');
+      element.style.color = '';
+      element.style.fontSize = '';
+      element.classList.remove('highlight');
+    }
+
+    // 3. SHOW/HIDE
+    function hide() {
+      document.getElementById('toggle-text').classList.add('hidden');
+    }
+
+    function show() {
+      document.getElementById('toggle-text').classList.remove('hidden');
+    }
+
+    function toggle() {
+      document.getElementById('toggle-text').classList.toggle('hidden');
+    }
+
+    // 4. GET INPUT VALUES
+    function greetUser() {
+      const name = document.getElementById('name-input').value;
+      const greeting = document.getElementById('greeting');
+
+      if (name) {
+        greeting.textContent = `Hello, ${name}! Nice to meet you! 👋`;
+        greeting.style.color = 'green';
+      } else {
+        greeting.textContent = 'Please enter your name first!';
+        greeting.style.color = 'red';
+      }
+    }
+
+    // 5. ADD/REMOVE ELEMENTS
+    function addItem() {
+      const input = document.getElementById('item-input');
+      const list = document.getElementById('item-list');
+
+      if (input.value.trim()) {
+        // Create new element
+        const newItem = document.createElement('div');
+        newItem.innerHTML = `
+                    <span>${input.value}</span>
+                    <button onclick="removeItem(this)">Remove</button>
+                `;
+        newItem.style.background = '#e9ecef';
+        newItem.style.padding = '8px';
+        newItem.style.margin = '5px 0';
+        newItem.style.borderRadius = '4px';
+        newItem.style.display = 'flex';
+        newItem.style.justifyContent = 'space-between';
+        newItem.style.alignItems = 'center';
+
+        // Add to list
+        list.appendChild(newItem);
+
+        // Clear input
+        input.value = '';
+      }
+    }
+
+    function removeItem(button) {
+      button.parentElement.remove();
+    }
+
+    function clearAll() {
+      document.getElementById('item-list').innerHTML = '';
+    }
+
+    // 6. SIMPLE TODO APP
+    let todoCount = 0;
+
+    function addTodo() {
+      const input = document.getElementById('todo-input');
+      const todoList = document.getElementById('todo-list');
+
+      if (input.value.trim()) {
+        todoCount++;
+
+        // Create todo item
+        const todoItem = document.createElement('div');
+        todoItem.className = 'todo-item';
+        todoItem.innerHTML = `
+                    <span onclick="toggleComplete(this)">${input.value}</span>
+                    <div>
+                        <button onclick="toggleComplete(this.parentElement.previousElementSibling)">✓</button>
+                        <button onclick="deleteTodo(this.parentElement.parentElement)">✗</button>
+                    </div>
+                `;
+
+        todoList.appendChild(todoItem);
+        input.value = '';
+      }
+    }
+
+    function toggleComplete(element) {
+      element.classList.toggle('completed');
+    }
+
+    function deleteTodo(element) {
+      element.remove();
+    }
+
+    // Add Enter key support for inputs
+    document.getElementById('name-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') greetUser();
+    });
+
+    document.getElementById('item-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') addItem();
+    });
+
+    document.getElementById('todo-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') addTodo();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation Tutorial</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      background: white;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      color: #667eea;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+
+    .demo-box {
+      background: #f8f9fa;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+      border-left: 4px solid #667eea;
+    }
+
+    .btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #5a67d8;
+    }
+
+    .btn-danger {
+      background: #e53e3e;
+    }
+
+    .btn-danger:hover {
+      background: #c53030;
+    }
+
+    .btn-success {
+      background: #38a169;
+    }
+
+    .btn-success:hover {
+      background: #2f855a;
+    }
+
+    .highlight {
+      background-color: #fff3cd !important;
+      color: #856404 !important;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .todo-item {
+      background: white;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .todo-item.completed {
+      background: #f0fff4;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .gallery-item {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #e2e8f0;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .counter-display {
+      font-size: 2em;
+      font-weight: bold;
+      color: #667eea;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .close:hover {
+      color: #333;
+    }
+
+    .code-block {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+
+    .tabs {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .tab {
+      background: #e2e8f0;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px 5px 0 0;
+      margin-right: 5px;
+    }
+
+    .tab.active {
+      background: #667eea;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 0 5px 5px 5px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>🚀 DOM Manipulation Tutorial</h1>
+      <p>From Basic to Advanced - Complete Guide with Live Examples</p>
+    </header>
+
+    <!-- BASIC LEVEL EXAMPLES -->
+    <section class="section">
+      <h2>📚 1. Basic DOM Selection & Manipulation</h2>
+
+      <div class="demo-box">
+        <h3>Text Content Manipulation</h3>
+        <p id="demo-text">Original text content</p>
+        <button class="btn" onclick="changeText()">Change Text</button>
+        <button class="btn" onclick="resetText()">Reset Text</button>
+
+        <div class="code-block">
+          // Basic text manipulation
+          function changeText() {
+          const element = document.getElementById('demo-text');
+          element.textContent = 'Text changed via JavaScript!';
+          }
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <h3>Style Manipulation</h3>
+        <p id="style-demo">Style this text!</p>
+        <button class="btn" onclick="changeStyle()">Change Style</button>
+        <button class="btn" onclick="addClass()">Add Class</button>
+        <button class="btn" onclick="removeClass()">Remove Class</button>
+
+        <div class="code-block">
+          // Style manipulation
+          function changeStyle() {
+          const element = document.getElementById('style-demo');
+          element.style.color = 'red';
+          element.style.fontSize = '20px';
+          element.style.fontWeight = 'bold';
+          }
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <h3>Show/Hide Elements</h3>
+        <p id="toggle-demo">This element can be toggled!</p>
+        <button class="btn" onclick="hideElement()">Hide</button>
+        <button class="btn" onclick="showElement()">Show</button>
+        <button class="btn" onclick="toggleElement()">Toggle</button>
+      </div>
+    </section>
+
+    <!-- INTERMEDIATE LEVEL EXAMPLES -->
+    <section class="section">
+      <h2>⚡ 2. Event Handling & Form Manipulation</h2>
+
+      <div class="demo-box">
+        <h3>Interactive Form</h3>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" rows="3" placeholder="Enter your message"></textarea>
+        </div>
+        <button class="btn" onclick="validateForm()">Validate Form</button>
+        <button class="btn btn-success" onclick="submitForm()">Submit Form</button>
+        <div id="form-output"></div>
+      </div>
+
+      <div class="demo-box">
+        <h3>Dynamic List Management</h3>
+        <div class="form-group">
+          <input type="text" id="list-input" placeholder="Add new item">
+          <button class="btn" onclick="addListItem()">Add Item</button>
+        </div>
+        <ul id="dynamic-list"></ul>
+        <button class="btn btn-danger" onclick="clearList()">Clear All</button>
+      </div>
+    </section>
+
+    <!-- ADVANCED LEVEL EXAMPLES -->
+    <section class="section">
+      <h2>🔥 3. Advanced DOM Techniques</h2>
+
+      <div class="demo-box">
+        <h3>Todo App with Local Storage</h3>
+        <div class="form-group">
+          <input type="text" id="todo-input" placeholder="Enter a todo item">
+          <button class="btn" onclick="addTodo()">Add Todo</button>
+        </div>
+        <div id="todo-list"></div>
+        <button class="btn btn-danger" onclick="clearAllTodos()">Clear All Todos</button>
+      </div>
+
+      <div class="demo-box">
+        <h3>Dynamic Gallery with Drag & Drop</h3>
+        <div class="form-group">
+          <input type="text" id="gallery-input" placeholder="Enter image title">
+          <button class="btn" onclick="addGalleryItem()">Add Gallery Item</button>
+        </div>
+        <div id="gallery" class="gallery-grid"></div>
+      </div>
+
+      <div class="demo-box">
+        <h3>Interactive Counter with Animations</h3>
+        <div class="counter-display" id="counter">0</div>
+        <button class="btn" onclick="incrementCounter()">+1</button>
+        <button class="btn" onclick="decrementCounter()">-1</button>
+        <button class="btn" onclick="resetCounter()">Reset</button>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERT LEVEL EXAMPLES -->
+    <section class="section">
+      <h2>🎯 4. Expert Level - Complex Interactions</h2>
+
+      <div class="demo-box">
+        <h3>Tab System</h3>
+        <div class="tabs">
+          <button class="tab active" onclick="showTab('tab1')">HTML</button>
+          <button class="tab" onclick="showTab('tab2')">CSS</button>
+          <button class="tab" onclick="showTab('tab3')">JavaScript</button>
+        </div>
+
+        <div class="tab-content active" id="tab1">
+          <h4>HTML Content</h4>
+          <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages.</p>
+          <div class="code-block">&lt;div class="example"&gt;
+            &lt;h1&gt;Hello World&lt;/h1&gt;
+            &lt;/div&gt;</div>
+        </div>
+
+        <div class="tab-content" id="tab2">
+          <h4>CSS Content</h4>
+          <p>CSS (Cascading Style Sheets) describes how HTML elements are displayed.</p>
+          <div class="code-block">.example {
+            color: blue;
+            font-size: 18px;
+            }</div>
+        </div>
+
+        <div class="tab-content" id="tab3">
+          <h4>JavaScript Content</h4>
+          <p>JavaScript is a programming language that makes web pages interactive.</p>
+          <div class="code-block">document.querySelector('.example')
+            .addEventListener('click', function() {
+            alert('Clicked!');
+            });</div>
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <h3>Modal Dialog System</h3>
+        <button class="btn" onclick="openModal()">Open Modal</button>
+        <button class="btn" onclick="openConfirmModal()">Confirm Dialog</button>
+      </div>
+
+      <div class="demo-box">
+        <h3>Real-time Search Filter</h3>
+        <div class="form-group">
+          <input type="text" id="search-input" placeholder="Search items..." oninput="filterItems()">
+        </div>
+        <div id="searchable-items"></div>
+        <button class="btn" onclick="populateSearchItems()">Generate Sample Items</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Modal HTML -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modal-title">Modal Title</h2>
+      <div id="modal-body">
+        <p>This is a modal dialog. You can put any content here!</p>
+      </div>
+      <div>
+        <button class="btn" onclick="closeModal()">Close</button>
+        <button class="btn btn-success" id="modal-confirm" onclick="confirmAction()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // BASIC LEVEL FUNCTIONS
+
+    // 1. Text Manipulation
+    function changeText() {
+      const element = document.getElementById('demo-text');
+      element.textContent = 'Text changed via JavaScript! 🎉';
+      element.style.transition = 'all 0.3s ease';
+      element.style.transform = 'scale(1.05)';
+      setTimeout(() => element.style.transform = 'scale(1)', 300);
+    }
+
+    function resetText() {
+      document.getElementById('demo-text').textContent = 'Original text content';
+    }
+
+    // 2. Style Manipulation
+    function changeStyle() {
+      const element = document.getElementById('style-demo');
+      element.style.color = 'red';
+      element.style.fontSize = '20px';
+      element.style.fontWeight = 'bold';
+      element.style.textDecoration = 'underline';
+    }
+
+    function addClass() {
+      document.getElementById('style-demo').classList.add('highlight');
+    }
+
+    function removeClass() {
+      const element = document.getElementById('style-demo');
+      element.classList.remove('highlight');
+      // Reset inline styles
+      element.style.cssText = '';
+    }
+
+    // 3. Show/Hide Elements
+    function hideElement() {
+      document.getElementById('toggle-demo').classList.add('hidden');
+    }
+
+    function showElement() {
+      document.getElementById('toggle-demo').classList.remove('hidden');
+    }
+
+    function toggleElement() {
+      document.getElementById('toggle-demo').classList.toggle('hidden');
+    }
+
+    // INTERMEDIATE LEVEL FUNCTIONS
+
+    // 4. Form Validation
+    function validateForm() {
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const output = document.getElementById('form-output');
+
+      let validation = [];
+
+      if (!username.trim()) validation.push('Username is required');
+      if (!email.includes('@')) validation.push('Valid email is required');
+      if (message.length < 10) validation.push('Message must be at least 10 characters');
+
+      if (validation.length === 0) {
+        output.innerHTML = '<p style="color: green;">✅ Form is valid!</p>';
+      } else {
+        output.innerHTML = '<p style="color: red;">❌ Errors:</p><ul>' +
+          validation.map(error => `<li>${error}</li>`).join('') + '</ul>';
+      }
+    }
+
+    function submitForm() {
+      const data = {
+        username: document.getElementById('username').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+
+      document.getElementById('form-output').innerHTML =
+        `<div style="background: #d4edda; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                    <strong>Form Submitted! 🚀</strong><br>
+                    Data: ${JSON.stringify(data, null, 2)}
+                </div>`;
+
+      // Clear form
+      document.getElementById('username').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('message').value = '';
+    }
+
+    // 5. Dynamic List Management
+    function addListItem() {
+      const input = document.getElementById('list-input');
+      const list = document.getElementById('dynamic-list');
+
+      if (input.value.trim()) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+                    ${input.value}
+                    <button class="btn btn-danger" onclick="removeListItem(this)" style="margin-left: 10px; padding: 5px 10px;">Remove</button>
+                `;
+        li.classList.add('fade-in');
+        list.appendChild(li);
+        input.value = '';
+      }
+    }
+
+    function removeListItem(button) {
+      button.parentElement.remove();
+    }
+
+    function clearList() {
+      document.getElementById('dynamic-list').innerHTML = '';
+    }
+
+    // ADVANCED LEVEL FUNCTIONS
+
+    // 6. Todo App with Local Storage
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+    function renderTodos() {
+      const container = document.getElementById('todo-list');
+      container.innerHTML = todos.map((todo, index) => `
+                <div class="todo-item ${todo.completed ? 'completed' : ''}">
+                    <span onclick="toggleTodo(${index})" style="cursor: pointer;">${todo.text}</span>
+                    <div>
+                        <button class="btn" onclick="toggleTodo(${index})">
+                            ${todo.completed ? 'Undo' : 'Complete'}
+                        </button>
+                        <button class="btn btn-danger" onclick="deleteTodo(${index})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+    }
+
+    function addTodo() {
+      const input = document.getElementById('todo-input');
+      if (input.value.trim()) {
+        todos.push({
+          text: input.value,
+          completed: false,
+          id: Date.now()
+        });
+        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos();
+        input.value = '';
+      }
+    }
+
+    function toggleTodo(index) {
+      todos[index].completed = !todos[index].completed;
+      localStorage.setItem('todos', JSON.stringify(todos));
+      renderTodos();
+    }
+
+    function deleteTodo(index) {
+      todos.splice(index, 1);
+      localStorage.setItem('todos', JSON.stringify(todos));
+      renderTodos();
+    }
+
+    function clearAllTodos() {
+      todos = [];
+      localStorage.setItem('todos', JSON.stringify(todos));
+      renderTodos();
+    }
+
+    // 7. Dynamic Gallery
+    let galleryCount = 0;
+
+    function addGalleryItem() {
+      const input = document.getElementById('gallery-input');
+      const gallery = document.getElementById('gallery');
+
+      if (input.value.trim()) {
+        const item = document.createElement('div');
+        item.className = 'gallery-item fade-in';
+        item.draggable = true;
+        item.innerHTML = `
+                    <h4>${input.value}</h4>
+                    <p>Gallery Item #${++galleryCount}</p>
+                    <button class="btn btn-danger" onclick="removeGalleryItem(this)">Remove</button>
+                `;
+
+        // Add drag and drop functionality
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('drop', handleDrop);
+
+        gallery.appendChild(item);
+        input.value = '';
+      }
+    }
+
+    function removeGalleryItem(button) {
+      button.parentElement.remove();
+    }
+
+    // Drag and Drop handlers
+    let draggedElement = null;
+
+    function handleDragStart(e) {
+      draggedElement = this;
+      this.style.opacity = '0.5';
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      if (this !== draggedElement) {
+        this.parentNode.insertBefore(draggedElement, this.nextSibling);
+      }
+      draggedElement.style.opacity = '';
+      draggedElement = null;
+    }
+
+    // 8. Interactive Counter with Progress
+    let counter = 0;
+
+    function updateCounter() {
+      document.getElementById('counter').textContent = counter;
+      const progress = Math.min(Math.max((counter + 50) / 100 * 100, 0), 100);
+      document.getElementById('progress').style.width = progress + '%';
+    }
+
+    function incrementCounter() {
+      counter++;
+      updateCounter();
+      animateCounter();
+    }
+
+    function decrementCounter() {
+      counter--;
+      updateCounter();
+      animateCounter();
+    }
+
+    function resetCounter() {
+      counter = 0;
+      updateCounter();
+      animateCounter();
+    }
+
+    function animateCounter() {
+      const element = document.getElementById('counter');
+      element.style.transform = 'scale(1.2)';
+      element.style.color = '#e53e3e';
+      setTimeout(() => {
+        element.style.transform = 'scale(1)';
+        element.style.color = '#667eea';
+      }, 200);
+    }
+
+    // EXPERT LEVEL FUNCTIONS
+
+    // 9. Tab System
+    function showTab(tabId) {
+      // Hide all tabs
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => tab.classList.remove('active'));
+      contents.forEach(content => content.classList.remove('active'));
+
+      // Show selected tab
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // 10. Modal System
+    function openModal() {
+      document.getElementById('modal-title').textContent = 'Information Modal';
+      document.getElementById('modal-body').innerHTML = `
+                <p>This is a dynamically created modal dialog!</p>
+                <p>Current time: ${new Date().toLocaleTimeString()}</p>
+            `;
+      document.getElementById('modal-confirm').style.display = 'none';
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    function openConfirmModal() {
+      document.getElementById('modal-title').textContent = 'Confirm Action';
+      document.getElementById('modal-body').innerHTML = `
+                <p>Are you sure you want to perform this action?</p>
+            `;
+      document.getElementById('modal-confirm').style.display = 'inline-block';
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function confirmAction() {
+      alert('Action confirmed! ✅');
+      closeModal();
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function (event) {
+      const modal = document.getElementById('modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+
+    // 11. Real-time Search Filter
+    let searchItems = [];
+
+    function populateSearchItems() {
+      const items = [
+        'Apple iPhone', 'Samsung Galaxy', 'Google Pixel', 'OnePlus', 'Xiaomi',
+        'JavaScript Tutorial', 'HTML Basics', 'CSS Flexbox', 'React Guide', 'Vue.js',
+        'Mountain Hiking', 'Beach Vacation', 'City Tour', 'Adventure Sports', 'Photography'
+      ];
+
+      searchItems = items.map((item, index) => ({
+        id: index,
+        name: item,
+        category: index < 5 ? 'Electronics' : index < 10 ? 'Programming' : 'Travel'
+      }));
+
+      renderSearchItems(searchItems);
+    }
+
+    function renderSearchItems(items) {
+      const container = document.getElementById('searchable-items');
+      container.innerHTML = items.map(item => `
+                <div class="todo-item fade-in">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <small style="color: #666; display: block;">Category: ${item.category}</small>
+                    </div>
+                </div>
+            `).join('');
+    }
+
+    function filterItems() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const filtered = searchItems.filter(item =>
+        item.name.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+      );
+      renderSearchItems(filtered);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function () {
+      renderTodos();
+      populateSearchItems();
+    });
+
+    // Add some keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+      // ESC to close modal
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+
+      // Enter to add todo when input is focused
+      if (e.key === 'Enter' && document.activeElement.id === 'todo-input') {
+        addTodo();
+      }
+
+      // Enter to add list item when input is focused
+      if (e.key === 'Enter' && document.activeElement.id === 'list-input') {
+        addListItem();
+      }
+    });
+  </script>
+</body>
+
+</html>

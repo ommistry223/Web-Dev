@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM Add/Remove Elements</title>
+</head>
+
+<body>
+
+  <h2>DOM Manipulation: Add and Remove Elements</h2>
+
+  <button onclick="addParagraph()">Add Paragraph</button>
+  <button onclick="removeLast()">Remove Last</button>
+  <button onclick="removeAll()">Remove All</button>
+
+  <div id="container" style="margin-top: 20px;"></div>
+
+  <script>
+    function addParagraph() {
+      let newPara = document.createElement("p");
+      newPara.innerText = "This is a new paragraph.";
+      document.getElementById("container").appendChild(newPara);
+    }
+
+    function removeLast() {
+      let container = document.getElementById("container");
+      if (container.lastChild) {
+        container.removeChild(container.lastChild);
+      }
+    }
+
+    function removeAll() {
+      let container = document.getElementById("container");
+      container.innerHTML = "";
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Simple DOM Manipulation</h1>
+  <h3>Change Button Content Text</h3>
+  <button id="myButton" onclick="Content()">Click Me!</button>
+  <script>
+    let button = document.getElementById("myButton");
+    function Content()
+    {
+      button.innerText = "Clicked!";
+      button.style.backgroundColor = "lightblue";
+    }
+  </script>
+</body>
+</html>

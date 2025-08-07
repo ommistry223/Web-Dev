@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Change Style with DOM</title>
+</head>
+
+<body>
+
+  <h2 id="myText">Style Me!</h2>
+
+  <button onclick="makeRed()">Red</button>
+  <button onclick="makeGreen()">Green</button>
+  <button onclick="makeBig()">Big</button>
+  <button onclick="resetStyle()">Reset</button>
+
+  <script>
+    const myText = document.getElementById("myText");
+
+    function makeRed() {
+      myText.style.color = "red";
+    }
+
+    function makeGreen() {
+      myText.style.color = "green";
+    }
+
+    function makeBig() {
+      myText.style.fontSize = "40px";
+    }
+
+    function resetStyle() {
+      myText.style.color = "";
+      myText.style.fontSize = "";
+    }
+  </script>
+
+</body>
+
+</html>
