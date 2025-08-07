@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM List Example</title>
+</head>
+
+<body>
+
+  <h2>Todo List Example using DOM</h2>
+
+  <input type="text" id="itemInput" placeholder="Enter item">
+  <button onclick="addItem()">Add Item</button>
+  <button onclick="clearList()">Clear All</button>
+
+  <ul id="itemList"></ul>
+
+  <script>
+    function addItem() {
+      let input = document.getElementById("itemInput");
+      let text = input.value.trim();
+
+      if (text !== "") {
+        let li = document.createElement("li");
+        li.innerText = text;
+        document.getElementById("itemList").appendChild(li);
+        input.value = ""; // clear input
+      } else {
+        alert("Please enter something!");
+      }
+    }
+
+    function clearList() {
+      document.getElementById("itemList").innerHTML = "";
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,17 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
 <body>
-  <h1>
-    Hello
-  </h1>
-
-  <form id="myform">
-    <label></label>
+  <h1>Hello</h1>
+  <h3>Hi</h3>
+  <form name="myform">
+    <input type="text" name="firstname" placeholder="Enter First Name">
+    <input type="text" name="lastname" placeholder="Enter Last Name">
   </form>
+  <button name="btn1" type="button" onclick="checkName()">Submit</button>
+  <button name="btn2" type="button" onclick="Remove()">Remove</button>
+  <div name="output"></div>
+  <script>
+    function checkName() {
+      const fname = document.myform.firstname.value;
+      const lname = document.myform.lastname.value;
+      const heading = document.createElement("h1");
+      heading.id = "title";
+      heading.textContent = fname + " " + lname;
+      const btn1 = document.getElementsByName("btn1")[0];
+      btn1.parentNode.replaceChild(heading, btn1);
+    }
+    function Remove() {
+      // const par = document.querySelectorAll('#title');
+      // par.forEach(h1=>h1.remove());
+
+      const par = document.querySelectorAll('#title');
+      par.forEach(p => p.remove());
+    }
+  </script>
 </body>
+
 </html>

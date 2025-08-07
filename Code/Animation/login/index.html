@@ -11,18 +11,18 @@
         <div class="head">
             <h1>Login</h1>
         </div>
-        <form action="Login.php">
+        <form>
             <div class="input">
-            
+
                 <input type="text" name="Username" placeholder="Username" required>
-                <i class='bxr  bx-user-circle'  ></i> 
+                <i class='bxr  bx-user-circle'  ></i>
             </div>
-            
+
             <div class="input">
                 <input type="password" name="Password" placeholder="Password" required>
-            
+
             </div>
-            
+
             <div class="forgot-pass">
                 <div class="remember-me">
                 <label>
@@ -30,16 +30,28 @@
                 </label>
                 <a href="#">Forgot Password?</a>
             </div>
-               
+
             </div>
             <div class="login-button">
-                <button>Login</button>
+                <button id="login-btn" onclick="Content()">Login</button>
             </div>
             <div class="dont-have-account">
                 <p>Don't have an account? <a href="register.html">Register</a></p>
             </div>
-        </form> 
-        
+        </form>
+
     </div>
+    <script src="script.js">
+        let btn = document.getElementById("login-btn");
+        function Content() {
+            btn.innerText = "Logged In!";
+            btn.style.backgroundColor = "lightblue";
+            btn.style.color = "white";
+            btn.style.border = "none";
+            btn.style.cursor = "not-allowed";
+            btn.disabled = true; // Disable the button after login
+        }
+    </script>
+
 </body>
 </html>
