@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Student Entry System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f3;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    table {
+      margin-top: 20px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .delete-btn {
+      background: red;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background: darkred;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Student Entry</h2>
+    <label for="studentId">Student ID:</label>
+    <input type="text" id="studentId" placeholder="Enter your ID">
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter your password">
+
+    <button onclick="addStudent()">Submit</button>
+
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Password</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Students will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let students = [];
+
+    function addStudent() {
+      let id = document.getElementById("studentId").value.trim();
+      let pass = document.getElementById("password").value.trim();
+
+      if (id === "" || pass === "") {
+        alert("Please fill both fields!");
+        return;
+      }
+
+      // Store student in array
+      students.push({ id: id, password: pass });
+
+      // Update table
+      displayStudents();
+
+      // Clear inputs
+      document.getElementById("studentId").value = "";
+      document.getElementById("password").value = "";
+    }
+
+    function displayStudents() {
+      let tbody = document.querySelector("#studentTable tbody");
+      tbody.innerHTML = "";
+
+      students.forEach((student, index) => {
+        let row = document.createElement("tr");
+
+        row.innerHTML = `
+                    <td>${student.id}</td>
+                    <td>${student.password}</td>
+                    <td><button class="delete-btn" onclick="deleteStudent(${index})">Delete</button></td>
+                `;
+
+        tbody.appendChild(row);
+      });
+    }
+
+    function deleteStudent(index) {
+      students.splice(index, 1);
+      displayStudents();
+    }
+  </script>
+
+</body>
+
+</html>
