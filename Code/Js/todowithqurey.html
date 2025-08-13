@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do Example</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="page-title">My To-Do List</h1>
+
+  <ul>
+    <li class="task">Buy groceries</li>
+    <li class="task">Clean the room</li>
+    <li class="task">Finish homework</li>
+  </ul>
+
+  <button id="highlight-first">Highlight First Task</button>
+  <button id="highlight-all">Highlight All Tasks</button>
+
+  <script>
+    // WHY use querySelector here? → To grab a SINGLE element (the button)
+    const highlightFirstBtn = document.querySelector("#highlight-first");
+    const highlightAllBtn = document.querySelector("#highlight-all");
+
+    // WHY use querySelector here? → To grab the FIRST matching task
+    highlightFirstBtn.addEventListener("click", () => {
+      const firstTask = document.querySelector(".task");
+      firstTask.classList.add("highlight");
+    });
+
+    // WHY use querySelectorAll here? → To grab ALL matching tasks
+    highlightAllBtn.addEventListener("click", () => {
+      const allTasks = document.querySelectorAll(".task");
+      allTasks.forEach(task => {
+        task.classList.add("highlight");
+      });
+    });
+  </script>
+</body>
+</html>

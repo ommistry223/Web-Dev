@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Student Login Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1e1e2f, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      min-height: 100vh;
+      margin: 0;
+      color: white;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00e6ff;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      color: #ddd;
+    }
+
+    input,
+    button,
+    textarea {
+      margin-top: 6px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    input,
+    textarea {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 8px #00e6ff;
+    }
+
+    button {
+      background-color: #00e6ff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #00c6d4;
+    }
+
+    #output {
+      margin-top: 25px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    #output h3 {
+      margin-top: 0;
+      color: #00e6ff;
+    }
+
+    .detail-item {
+      margin: 6px 0;
+      padding: 5px 8px;
+      border-left: 4px solid #00e6ff;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Student Login Page</h2>
+
+    <!-- Input Form -->
+    <label>Student Name:
+      <input type="text" id="name">
+    </label>
+
+    <label>Student ID:
+      <input type="text" id="studentId">
+    </label>
+
+    <label>Branch:
+      <input type="text" id="branch">
+    </label>
+
+    <label>Email:
+      <input type="email" id="email">
+    </label>
+
+    <label>Phone Number:
+      <input type="text" id="phone">
+    </label>
+
+    <label>Extra Info:
+      <textarea id="extra" rows="3"></textarea>
+    </label>
+
+    <button onclick="loginStudent()">Login</button>
+
+    <!-- Output Display -->
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function loginStudent() {
+      // Step 1: Create object from form data
+      let student = {
+        name: document.getElementById("name").value.trim(),
+        id: document.getElementById("studentId").value.trim(),
+        branch: document.getElementById("branch").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        extra: document.getElementById("extra").value.trim(),
+        showInfo: function () {
+          return `
+            <div class="detail-item"><strong>Name:</strong> ${this.name}</div>
+            <div class="detail-item"><strong>Student ID:</strong> ${this.id}</div>
+            <div class="detail-item"><strong>Branch:</strong> ${this.branch}</div>
+            <div class="detail-item"><strong>Email:</strong> ${this.email}</div>
+            <div class="detail-item"><strong>Phone:</strong> ${this.phone}</div>
+            <div class="detail-item"><strong>Extra Info:</strong> ${this.extra || "N/A"}</div>
+          `;
+        }
+      };
+
+      // Step 2: Display in output box
+      document.getElementById("output").innerHTML =
+        `<h3>Student Login Details</h3>` + student.showInfo();
+
+      console.log(student);
+    }
+  </script>
+</body>
+
+</html>

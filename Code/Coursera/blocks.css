@@ -1,0 +1,51 @@
+/* blocks.css */
+
+/* Basic body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+header {
+  background-color: #4CAF50;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+/* Navigation menu styling */
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #45a049;
+  border-radius: 4px;
+}
+
+/* Content blocks */
+.block {
+  background-color: white;
+  margin: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
