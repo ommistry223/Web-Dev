@@ -1,0 +1,28 @@
+{
+  "name": "vscode-ai-superpack",
+  "displayName": "VS Code AI Superpack",
+  "description": "One-click install for the best AI tools in VS Code",
+  "version": "1.0.0",
+  "publisher": "yourname",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Extension Packs"
+  ],
+  "extensionPack": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "sourcegraph.cody-ai",
+    "Continue.continue",
+    "TabNine.tabnine-vscode",
+    "Blackboxapp.blackbox",
+    "mintlify.document",
+    "DanielSanMedium.dscodegpt",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "bierner.markdown-preview-github-styles",
+    "formulahendry.code-runner",
+    "ritwickdey.LiveServer"
+  ]
+}
