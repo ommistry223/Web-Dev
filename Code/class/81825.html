@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="ui"> </ul>
+  <script>
+    const product = [
+      {
+        id: 101,
+        name: 'Laptop',
+        quantity: 1000,
+        price: 150000
+      },
+      {
+        id: 102,
+        name: 'Mobile',
+        quantity: 5000,
+        price: 20000
+      },
+      {
+        id: 103,
+        name: 'Tablet',
+        quantity: 3000,
+        price: 30000
+      }
+    ];
+    product.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `Name: ${item.name}, Quantity: ${item.quantity}`;
+      document.getElementById('ui').appendChild(li);
+    });
+
+    const jsonText =
+      `[
+    {
+      "id": 101,
+      "name": "Laptop",
+      "quantity": 1000,
+      "price": 150000
+    },
+    {
+      "id": 102,
+      "name": "Mobile",
+      "quantity": 5000,
+      "price": 20000
+    },
+    {
+      "id": 103,
+      "name": "Tablet",
+      "quantity": 3000,
+      "price": 30000
+    }
+    ]`;
+    const jsonData = JSON.parse(jsonText);
+    jsonData.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `Name: ${item.name}, Quantity: ${item.quantity}`;
+      document.getElementById('ui').appendChild(li);
+    });
+  </script>
+</body>
+
+</html>

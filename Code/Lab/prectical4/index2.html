@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Portal</title>
+  <style>
+    :root {
+      --bg-color: #f0f2f5;
+      --text-color: #333;
+      --card-bg: #fff;
+      --button-bg: #007bff;
+      --button-text: #fff;
+    }
+
+    body.dark {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+      --card-bg: #1e1e1e;
+      --button-bg: #28a745;
+      --button-text: #fff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h2 {
+      margin: 20px 0 10px;
+    }
+
+    .banner {
+      background: #fffae6;
+      border-left: 5px solid #ffc107;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #333;
+    }
+
+    .banner button {
+      background: #ffc107;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .faq-item {
+      border: 1px solid #ddd;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      overflow: hidden;
+      background: var(--card-bg);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s;
+    }
+
+    .faq-item button {
+      width: 100%;
+      padding: 12px;
+      text-align: left;
+      background: #4da6ff;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-color);
+    }
+
+    .faq-item div {
+      display: none;
+      padding: 12px;
+      border-top: 1px solid #eee;
+      background: var(--card-bg);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      color: var(--text-color);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-content button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      border: none;
+      background: var(--button-bg);
+      color: var(--button-text);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .slider {
+      width: 100%;
+      max-width: 400px;
+      overflow: hidden;
+      border-radius: 5px;
+      margin-top: 10px;
+      background: var(--card-bg);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 40px;
+      text-align: center;
+      background: #dee2e6;
+      font-size: 18px;
+      color: #333;
+    }
+
+    body.dark .slide {
+      color: #000;
+    }
+
+    .controls {
+      margin-top: 10px;
+    }
+
+    .controls button {
+      padding: 8px 14px;
+      border: none;
+      background: var(--button-bg);
+      color: var(--button-text);
+      cursor: pointer;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+
+    .theme-btn {
+      margin: 10px 0;
+      padding: 8px 14px;
+      border: none;
+      background: #28a745;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Notification Banner -->
+  <div id="banner" class="banner">
+    <span>Welcome to the portal!</span>
+    <button onclick="dismissBanner()">Dismiss</button>
+  </div>
+
+  <!-- Theme Switcher -->
+  <button class="theme-btn" onclick="toggleTheme()">Toggle Theme</button>
+
+  <!-- FAQs -->
+  <h2>FAQs</h2>
+  <div id="faq"></div>
+
+  <!-- Popup -->
+  <h2>Popup</h2>
+  <button class="controls button" onclick="openModal()">Open Popup</button>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <p>This is a popup message!</p>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <!-- Slider -->
+  <h2>Slider</h2>
+  <div class="slider">
+    <div id="slides" class="slides"></div>
+  </div>
+  <div class="controls">
+    <button onclick="prevSlide()">Prev</button>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <script>
+    // FAQs (from static JSON)
+    const faqs = [
+      { q: "What is this portal?", a: "It is a demo for dynamic content." },
+      { q: "How do I use it?", a: "Click buttons to interact with content." }
+    ];
+    const faqDiv = document.getElementById('faq');
+    faqs.forEach((f, i) => {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+      item.innerHTML = `<button onclick="toggleFAQ(${i})">${f.q}</button><div>${f.a}</div>`;
+      faqDiv.appendChild(item);
+    });
+    function toggleFAQ(i) {
+      const answer = faqDiv.children[i].querySelector('div');
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Modal
+    function openModal() { document.getElementById('modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('modal').style.display = 'none'; }
+
+    // Slider
+    const slidesData = ["Slide 1", "Slide 2", "Slide 3"];
+    const slidesEl = document.getElementById('slides');
+    slidesData.forEach(s => { slidesEl.innerHTML += `<div class='slide'>${s}</div>`; });
+    let index = 0;
+    function showSlide() { slidesEl.style.transform = `translateX(-${index * 100}%)`; }
+    function prevSlide() { index = (index - 1 + slidesData.length) % slidesData.length; showSlide(); }
+    function nextSlide() { index = (index + 1) % slidesData.length; showSlide(); }
+
+    // Banner
+    function dismissBanner() { document.getElementById('banner').style.display = 'none'; }
+
+    // Theme Switcher
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+
+</html>
