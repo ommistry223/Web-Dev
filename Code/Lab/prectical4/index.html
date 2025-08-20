@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dynamic Portal UI – FAQs, Popups, Slider, Theme Switcher</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-soft: #f5f7fb;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #2563eb;
+      --primary-contrast: #ffffff;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --accent: #22c55e;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1220;
+      --bg-soft: #0f172a;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --primary: #60a5fa;
+      --primary-contrast: #0b1220;
+      --card: #111827;
+      --border: #1f2937;
+      --accent: #34d399;
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin-inline: auto;
+      padding: 24px
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+    }
+
+    .row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .grow {
+      flex: 1 1 340px
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.12)
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform .15s ease, background .2s ease
+    }
+
+    .btn:active {
+      transform: scale(.98)
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: var(--primary-contrast)
+    }
+
+    .btn.ghost {
+      background: transparent
+    }
+
+    .kb {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      padding: 2px 6px;
+      border-radius: 6px
+    }
+
+    /* Notification banner */
+    .notice {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--primary);
+      color: var(--primary-contrast);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .notice button {
+      margin-left: auto
+    }
+
+    /* Accordion (FAQs) */
+    .accordion {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border)
+    }
+
+    .faq {
+      background: var(--card)
+    }
+
+    .faq+.faq {
+      border-top: 1px solid var(--border)
+    }
+
+    .faq button {
+      all: unset;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      padding: 16px
+    }
+
+    .faq button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 8px
+    }
+
+    .faq h3 {
+      margin: 0;
+      font-size: 16px
+    }
+
+    .faq svg {
+      flex: 0 0 auto;
+      transition: transform .2s ease
+    }
+
+    .faq[aria-expanded="true"] svg {
+      transform: rotate(180deg)
+    }
+
+    .faq-panel {
+      padding: 0 16px 16px 48px;
+      display: none
+    }
+
+    .faq[aria-expanded="true"] .faq-panel {
+      display: block
+    }
+
+    /* Modal */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgb(0 0 0 / .5);
+      display: none;
+      place-items: center;
+      padding: 24px
+    }
+
+    .backdrop[aria-hidden="false"] {
+      display: grid
+    }
+
+    .modal {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 560px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgb(0 0 0 / .25)
+    }
+
+    .modal header {
+      position: static;
+      background: transparent;
+      border: 0;
+      padding: 16px 20px
+    }
+
+    .modal .content {
+      padding: 0 20px 20px
+    }
+
+    /* Slider */
+    .slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--card)
+    }
+
+    .track {
+      display: flex;
+      transition: transform .4s ease
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 28px
+    }
+
+    .slider .nav {
+      position: absolute;
+      inset-block: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 6px;
+      pointer-events: none
+    }
+
+    .slider .nav button {
+      pointer-events: auto
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 8px
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 0
+    }
+
+    .dot[aria-current="true"] {
+      background: var(--primary)
+    }
+
+    /* Code-like badges */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--bg-soft)
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .track {
+        transition: none
+      }
+
+      .card,
+      .faq svg {
+        transition: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Notification Banner (can be "persistently" dismissed per session) -->
+  <div id="notice" class="notice" role="region" aria-label="Notification" hidden>
+    <strong>New:</strong>
+    <span id="notice-text">Welcome! Explore the new <em>dark mode</em> and animated cards ✨</span>
+    <button class="btn ghost" id="dismissNotice" aria-label="Dismiss notification">Dismiss</button>
+  </div>
+
+  <header>
+    <div class="container row" style="align-items:center;">
+      <h1 style="margin:0; font-size:20px;">Dynamic Portal Demo</h1>
+      <div style="margin-left:auto; display:flex; gap:8px; align-items:center">
+        <button id="themeToggle" class="btn" aria-pressed="false" aria-label="Toggle theme (light/dark)">🌞/🌙
+          Theme</button>
+        <button id="openModal" class="btn primary">Open Popup</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="app">
+    <section class="row">
+      <div class="card grow">
+        <h2 style="margin-top:0">Collapsible FAQs (from JSON)</h2>
+        <p class="muted">Demonstrates DOM creation and event delegation.</p>
+        <div id="faqList" class="accordion" aria-label="Frequently Asked Questions"></div>
+      </div>
+
+      <div class="card grow">
+        <h2 style="margin-top:0">Events Timeline (JSON → UI)</h2>
+        <div id="events" class="row" style="gap:12px"></div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h2 style="margin-top:0">Slider / Carousel</h2>
+      <div class="slider" id="slider" aria-roledescription="carousel" aria-label="Feature highlights">
+        <div class="track" id="track"></div>
+        <div class="nav">
+          <button id="prev" class="btn" aria-label="Previous slide">◀</button>
+          <button id="next" class="btn" aria-label="Next slide">▶</button>
+        </div>
+      </div>
+      <div id="dots" class="dots" aria-label="Slide indicators"></div>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h2 style="margin-top:0">How this improves usability</h2>
+      <ul>
+        <li><span class="pill">Collapsible FAQs</span> minimize cognitive load by revealing content on demand.</li>
+        <li><span class="pill">Popup modal</span> focuses attention for important actions (keyboard & ESC supported).
+        </li>
+        <li><span class="pill">Slider</span> groups related highlights without overwhelming the page.</li>
+        <li><span class="pill">Notification banner</span> surfaces time‑sensitive info, dismissible and non‑intrusive.
+        </li>
+        <li><span class="pill">Theme switcher</span> supports light/dark preferences and persists choice.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Modal Popup -->
+  <div class="backdrop" id="backdrop" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
+    <div class="modal" role="document">
+      <header>
+        <h2 id="modalTitle" style="margin:0">Quick Action</h2>
+      </header>
+      <div class="content">
+        <p>This popup demonstrates accessible focus trapping, ESC to close, and programmatic event handling.</p>
+        <div style="display:flex; gap:8px; justify-content:flex-end; padding:12px 0 4px">
+          <button id="closeModal" class="btn">Cancel <span class="kb">Esc</span></button>
+          <button class="btn primary" id="confirmAction">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container" style="opacity:.8; padding-bottom:40px">
+    <hr style="border:0;border-top:1px solid var(--border); margin:24px 0" />
+    <p style="margin:0">Post‑Lab: Test each module on multiple pages, verify keyboard access (<span
+        class="kb">Tab</span>, <span class="kb">Enter</span>, <span class="kb">Space</span>), and check reduced‑motion.
+    </p>
+  </footer>
+
+  <script>
+    // ======== Static JSON datasets ========
+    const faqData = [
+      { q: "How do I switch themes?", a: "Use the Theme button in the header or your system preference. We store your choice in localStorage." },
+      { q: "Can I navigate the FAQ via keyboard?", a: "Yes. Use Tab to focus a question, then press Enter or Space to toggle it." },
+      { q: "What browsers are supported?", a: "Modern evergreen browsers. The layout uses flexbox and CSS variables." }
+    ];
+
+    const eventsData = [
+      { title: "Release v1.0", date: "2025-06-01", tag: "Milestone" },
+      { title: "Design Review", date: "2025-07-12", tag: "Review" },
+      { title: "Dark Mode Launch", date: "2025-08-10", tag: "Feature" }
+    ];
+
+    const sliderData = [
+      { title: "Live FAQ from JSON", text: "Build DOM nodes dynamically and bind events with delegation.", kpi: "+30% time on page" },
+      { title: "Accessible Modal", text: "Trap focus, ESC to close, and restore focus on exit.", kpi: "-25% task time" },
+      { title: "Notification Banner", text: "Announce changes without interrupting workflows.", kpi: "+12% announcements seen" }
+    ];
+
+    // ======== Utility: DOM helpers ========
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+    // ======== Theme switcher (advanced) ========
+    const THEME_KEY = 'portal-theme';
+    function setTheme(mode) {
+      document.documentElement.setAttribute('data-theme', mode);
+      const pressed = mode === 'dark';
+      const btn = $('#themeToggle');
+      if (btn) { btn.setAttribute('aria-pressed', String(pressed)); }
+      localStorage.setItem(THEME_KEY, mode);
+    }
+    function initTheme() {
+      const saved = localStorage.getItem(THEME_KEY);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(saved || (prefersDark ? 'dark' : 'light'));
+    }
+
+    // ======== Notification banner ========
+    const NOTICE_KEY = 'notice-dismissed';
+    function initNotice() {
+      const dismissed = sessionStorage.getItem(NOTICE_KEY) === '1';
+      const el = $('#notice');
+      if (!dismissed && el) { el.hidden = false; }
+      $('#dismissNotice')?.addEventListener('click', () => { sessionStorage.setItem(NOTICE_KEY, '1'); el.hidden = true; });
+    }
+
+    // ======== Build FAQs dynamically from JSON ========
+    function renderFAQs() {
+      const wrap = $('#faqList');
+      wrap.innerHTML = '';
+      faqData.forEach((item, idx) => {
+        const section = document.createElement('section');
+        section.className = 'faq';
+        section.setAttribute('aria-expanded', 'false');
+        section.innerHTML = `
+          <button aria-controls="faq-${idx}" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 15.5l-7-7 1.4-1.4L12 12.7l5.6-5.6L19 8.5z"/></svg>
+            <h3>${item.q}</h3>
+          </button>
+          <div id="faq-${idx}" class="faq-panel" role="region">${item.a}</div>
+        `;
+        wrap.appendChild(section);
+      });
+
+      // Event delegation: toggle when button is clicked or activated via keyboard
+      wrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const section = btn.closest('.faq');
+        const expanded = section.getAttribute('aria-expanded') === 'true';
+        section.setAttribute('aria-expanded', String(!expanded));
+        btn.setAttribute('aria-expanded', String(!expanded));
+      });
+
+      // Keyboard support for Space/Enter (works automatically, but ensure for custom elements)
+      wrap.addEventListener('keydown', (e) => {
+        if ((e.key === ' ' || e.key === 'Enter') && e.target.closest('button')) {
+          e.preventDefault();
+          e.target.click();
+        }
+      });
+    }
+
+    // ======== Render Event cards ========
+    function renderEvents() {
+      const wrap = $('#events');
+      wrap.innerHTML = '';
+      eventsData.forEach(ev => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.style.flex = '1 1 220px';
+        card.innerHTML = `
+          <h3 style="margin:0 0 4px">${ev.title}</h3>
+          <div class="muted" style="font-size:14px">${new Date(ev.date).toDateString()}</div>
+          <div style="margin-top:10px"><span class="pill">${ev.tag}</span></div>
+        `;
+        wrap.appendChild(card);
+      });
+    }
+
+    // ======== Slider / Carousel ========
+    function renderSlider() {
+      const track = $('#track');
+      const dots = $('#dots');
+      track.innerHTML = '';
+      dots.innerHTML = '';
+      sliderData.forEach((s, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.setAttribute('role', 'group');
+        slide.setAttribute('aria-label', `${i + 1} of ${sliderData.length}`);
+        slide.innerHTML = `
+          <h3 style="margin:0 0 6px">${s.title}</h3>
+          <p class="muted" style="margin:0 0 10px">${s.text}</p>
+          <strong>${s.kpi}</strong>
+        `;
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dots.appendChild(dot);
+      });
+
+      let index = 0;
+      let startX = 0; let currentX = 0; let dragging = false;
+
+      function update() {
+        track.style.transform = `translateX(${-index * 100}%)`;
+        $$('.dot').forEach((d, di) => d.setAttribute('aria-current', di === index));
+      }
+      function goTo(i) { index = (i + sliderData.length) % sliderData.length; update(); }
+      $('#prev').addEventListener('click', () => goTo(index - 1));
+      $('#next').addEventListener('click', () => goTo(index + 1));
+
+      // Touch/drag support
+      track.addEventListener('pointerdown', (e) => { dragging = true; startX = e.clientX; track.setPointerCapture(e.pointerId); });
+      track.addEventListener('pointermove', (e) => { if (!dragging) return; currentX = e.clientX; const dx = currentX - startX; track.style.transform = `translateX(calc(${-index * 100}% + ${dx}px))`; });
+      track.addEventListener('pointerup', (e) => { if (!dragging) return; dragging = false; const dx = e.clientX - startX; if (Math.abs(dx) > 60) { goTo(index + (dx < 0 ? 1 : -1)); } else { update(); } });
+
+      // Keyboard support (Left/Right)
+      $('#slider').addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') goTo(index + 1); if (e.key === 'ArrowLeft') goTo(index - 1); });
+
+      update();
+    }
+
+    // ======== Modal with focus management ========
+    const modal = {
+      isOpen: false,
+      open() {
+        this.isOpen = true;
+        const bd = $('#backdrop');
+        bd.setAttribute('aria-hidden', 'false');
+        bd.style.display = 'grid';
+        // trap focus
+        const focusables = $$('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', bd);
+        this._first = focusables[0];
+        this._last = focusables[focusables.length - 1];
+        this._prevFocus = document.activeElement;
+        this._first?.focus();
+      },
+      close() {
+        this.isOpen = false;
+        const bd = $('#backdrop');
+        bd.setAttribute('aria-hidden', 'true');
+        bd.style.display = 'none';
+        this._prevFocus?.focus();
+      }
+    };
+
+    function initModal() {
+      $('#openModal').addEventListener('click', () => modal.open());
+      $('#closeModal').addEventListener('click', () => modal.close());
+      $('#confirmAction').addEventListener('click', () => { alert('Action confirmed ✅'); modal.close(); });
+      $('#backdrop').addEventListener('click', (e) => { if (e.target.id === 'backdrop') modal.close(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.isOpen) modal.close();
+        if (e.key === 'Tab' && modal.isOpen) {
+          const active = document.activeElement;
+          if (e.shiftKey && active === modal._first) { e.preventDefault(); modal._last.focus(); }
+          else if (!e.shiftKey && active === modal._last) { e.preventDefault(); modal._first.focus(); }
+        }
+      });
+    }
+
+    // ======== Init everything ========
+    initTheme();
+    initNotice();
+    renderFAQs();
+    renderEvents();
+    renderSlider();
+    initModal();
+
+    // Theme toggle
+    $('#themeToggle').addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Make the whole app resilient: announce JS ready
+    document.body.classList.add('js-ready');
+  </script>
+</body>
+
+</html>

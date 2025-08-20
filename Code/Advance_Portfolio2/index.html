@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultimate Portfolio | Your Name</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- 3D Background -->
+  <div id="threejs-container"></div>
+
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">
+        <svg viewBox="0 0 200 200" class="logo-svg">
+          <path class="logo-path" d="M50,100 Q75,50 100,100 T150,100" fill="none" stroke="var(--primary-color)"
+            stroke-width="8" />
+        </svg>
+      </div>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursor Effects -->
+  <div class="cursor cursor--small"></div>
+  <canvas class="cursor cursor--canvas" resize></canvas>
+
+  <!-- Theme Toggle -->
+  <div class="theme-toggle">
+    <div class="toggle-switch">
+      <input type="checkbox" id="theme-toggle">
+      <label for="theme-toggle">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+        <span class="toggle-ball"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Floating Navigation -->
+  <div class="floating-nav">
+    <ul>
+      <li><a href="#home" class="nav-dot active" data-tooltip="Home"></a></li>
+      <li><a href="#about" class="nav-dot" data-tooltip="About"></a></li>
+      <li><a href="#services" class="nav-dot" data-tooltip="Services"></a></li>
+      <li><a href="#skills" class="nav-dot" data-tooltip="Skills"></a></li>
+      <li><a href="#projects" class="nav-dot" data-tooltip="Projects"></a></li>
+      <li><a href="#testimonials" class="nav-dot" data-tooltip="Testimonials"></a></li>
+      <li><a href="#contact" class="nav-dot" data-tooltip="Contact"></a></li>
+    </ul>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo" data-text="Portfolio">
+        <span>P</span><span>o</span><span>r</span><span>t</span><span>f</span><span>o</span><span>l</span><span>i</span><span>o</span>
+      </div>
+
+      <nav class="navbar">
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#home" class="nav-link active" data-hover="Home">Home</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link" data-hover="About">About</a></li>
+          <li class="nav-item"><a href="#services" class="nav-link" data-hover="Services">Services</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link" data-hover="Skills">Skills</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link" data-hover="Projects">Projects</a></li>
+          <li class="nav-item"><a href="#testimonials" class="nav-link" data-hover="Testimonials">Testimonials</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link" data-hover="Contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-shape">
+      <div class="shape-1"></div>
+      <div class="shape-2"></div>
+      <div class="shape-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <h4 class="subtitle" data-aos="fade-up">Hello, I'm</h4>
+        <h1 class="title" data-aos="fade-up" data-aos-delay="100">
+          <span class="name-wrapper">
+            <span class="name">Your</span>
+            <span class="name">Name</span>
+          </span>
+        </h1>
+        <h2 class="typing-text" data-aos="fade-up" data-aos-delay="200"></h2>
+        <p class="description" data-aos="fade-up" data-aos-delay="300">
+          I craft immersive digital experiences with cutting-edge technologies and innovative design solutions that
+          drive results.
+        </p>
+
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+          <a href="#contact" class="btn btn-primary btn-magnetic">
+            <span class="btn-text">Hire Me</span>
+            <span class="btn-circle"></span>
+          </a>
+          <a href="#" class="btn btn-secondary btn-magnetic">
+            <span class="btn-text">Download CV</span>
+            <span class="btn-circle"></span>
+          </a>
+        </div>
+
+        <div class="hero-social" data-aos="fade-up" data-aos-delay="500">
+          <a href="https://github.com/" class="social-icon" data-tooltip="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="social-icon" data-tooltip="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-icon" data-tooltip="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon" data-tooltip="Dribbble">
+            <i class="fab fa-dribbble"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image" data-aos="fade-left">
+        <div class="image-wrapper">
+          <div class="image-container">
+            <img src="ProfilePic.jpg" alt="Profile Image" class="profile-img">
+            <div class="glow-effect"></div>
+            <div class="tech-icons">
+              <div class="icon" style="--i:1"><i class="fab fa-react"></i></div>
+              <div class="icon" style="--i:2"><i class="fab fa-js"></i></div>
+              <div class="icon" style="--i:3"><i class="fab fa-node-js"></i></div>
+              <div class="icon" style="--i:4"><i class="fab fa-html5"></i></div>
+              <div class="icon" style="--i:5"><i class="fab fa-css3-alt"></i></div>
+              <div class="icon" style="--i:6"><i class="fab fa-figma"></i></div>
+            </div>
+          </div>
+          <div class="shape-4"></div>
+          <div class="shape-5"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <p class="section-subtitle">Get to know me better</p>
+      </div>
+
+      <div class="about-content">
+        <div class="about-image" data-aos="fade-right">
+          <div class="image-container">
+            <img src="ProfilePic.jpg" alt="About Image" class="about-img">
+            <div class="experience-badge">
+              <div class="badge-inner">
+                <span class="number">5+</span>
+                <span class="text">Years Experience</span>
+              </div>
+            </div>
+            <div class="about-shape"></div>
+          </div>
+        </div>
+
+        <div class="about-text" data-aos="fade-left">
+          <h3>Who I Am</h3>
+          <p>I'm a passionate full-stack developer and creative designer with over 5 years of experience crafting
+            digital experiences that blend aesthetics with functionality. My approach combines technical expertise with
+            artistic vision to deliver solutions that exceed expectations.</p>
+
+          <div class="about-tabs">
+            <div class="tabs-header">
+              <button class="tab-btn active" data-tab="skills">Skills</button>
+              <button class="tab-btn" data-tab="experience">Experience</button>
+              <button class="tab-btn" data-tab="education">Education</button>
+            </div>
+
+            <div class="tabs-content">
+              <div class="tab-panel active" id="skills-tab">
+                <div class="skills-list">
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">Web Development</span>
+                      <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="90"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">UI/UX Design</span>
+                      <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="85"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <div class="skill-info">
+                      <span class="skill-name">Mobile Development</span>
+                      <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-width="75"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-panel" id="experience-tab">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-date">2020 - Present</div>
+                    <div class="timeline-content">
+                      <h4>Senior Web Developer</h4>
+                      <p>Tech Solutions Inc.</p>
+                      <p>Lead development team in creating enterprise-level web applications.</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-date">2018 - 2020</div>
+                    <div class="timeline-content">
+                      <h4>Frontend Developer</h4>
+                      <p>Digital Creative Agency</p>
+                      <p>Developed responsive websites and web applications for clients.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-panel" id="education-tab">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-date">2014 - 2018</div>
+                    <div class="timeline-content">
+                      <h4>B.S. Computer Science</h4>
+                      <p>Stanford University</p>
+                      <p>Specialized in Human-Computer Interaction and Web Technologies.</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-date">2018</div>
+                    <div class="timeline-content">
+                      <h4>UX Design Certification</h4>
+                      <p>Interaction Design Foundation</p>
+                      <p>Advanced user experience design principles and methodologies.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-btns">
+            <a href="#contact" class="btn btn-primary btn-magnetic">
+              <span class="btn-text">Contact Me</span>
+              <span class="btn-circle"></span>
+            </a>
+            <a href="#" class="btn btn-secondary btn-magnetic">
+              <span class="btn-text">View All Skills</span>
+              <span class="btn-circle"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services section">
+    <div class="services-shape">
+      <div class="shape-6"></div>
+      <div class="shape-7"></div>
+    </div>
+
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span>Services</span></h2>
+        <p class="section-subtitle">What I offer to my clients</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-icon">
+            <i class="fas fa-code"></i>
+            <div class="icon-shape"></div>
+          </div>
+          <h3>Web Development</h3>
+          <p>Custom website development with modern technologies like React, Vue, and Node.js for optimal performance.
+          </p>
+          <a href="#" class="read-more">
+            <span>Read More</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="service-hover-effect"></div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-icon">
+            <i class="fas fa-paint-brush"></i>
+            <div class="icon-shape"></div>
+          </div>
+          <h3>UI/UX Design</h3>
+          <p>Beautiful and intuitive user interfaces designed to enhance user experience and drive engagement.</p>
+          <a href="#" class="read-more">
+            <span>Read More</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="service-hover-effect"></div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-icon">
+            <i class="fas fa-mobile-alt"></i>
+            <div class="icon-shape"></div>
+          </div>
+          <h3>Mobile Development</h3>
+          <p>Cross-platform mobile applications built with React Native or Flutter for seamless performance.</p>
+          <a href="#" class="read-more">
+            <span>Read More</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="service-hover-effect"></div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-icon">
+            <i class="fas fa-search"></i>
+            <div class="icon-shape"></div>
+          </div>
+          <h3>SEO Optimization</h3>
+          <p>Comprehensive SEO strategies to improve your website's visibility and search engine rankings.</p>
+          <a href="#" class="read-more">
+            <span>Read More</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="service-hover-effect"></div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-icon">
+            <i class="fas fa-server"></i>
+            <div class="icon-shape"></div>
+          </div>
+          <h3>Backend Development</h3>
+          <p>Robust backend solutions with Node.js, Python, or PHP to power your applications.</p>
+          <a href="#" class="read-more">
+            <span>Read More</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="service-hover-effect"></div>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="service-icon">
+            <i class="fas fa-chart-line"></i>
+            <div class="icon-shape"></div>
+          </div>
+          <h3>Digital Marketing</h3>
+          <p>Data-driven marketing strategies to grow your online presence and customer base.</p>
+          <a href="#" class="read-more">
+            <span>Read More</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <div class="service-hover-effect"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <p class="section-subtitle">Technologies I work with</p>
+      </div>
+
+      <div class="skills-content">
+        <div class="skills-chart" data-aos="fade-right">
+          <canvas id="skillsRadarChart"></canvas>
+        </div>
+
+        <div class="skills-list" data-aos="fade-left">
+          <div class="skill-category">
+            <h3>Frontend Development</h3>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-html5"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>HTML5</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="95"></div>
+                  </div>
+                  <span class="skill-percent">95%</span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-css3-alt"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>CSS3</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="90"></div>
+                  </div>
+                  <span class="skill-percent">90%</span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-js"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>JavaScript</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="85"></div>
+                  </div>
+                  <span class="skill-percent">85%</span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-react"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>React</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="80"></div>
+                  </div>
+                  <span class="skill-percent">80%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3>Backend Development</h3>
+            <div class="skills-grid">
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fab fa-node-js"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>Node.js</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="75"></div>
+                  </div>
+                  <span class="skill-percent">75%</span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fas fa-database"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>MongoDB</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="70"></div>
+                  </div>
+                  <span class="skill-percent">70%</span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fas fa-server"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>Express</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="70"></div>
+                  </div>
+                  <span class="skill-percent">70%</span>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="skill-icon">
+                  <i class="fas fa-fire"></i>
+                </div>
+                <div class="skill-details">
+                  <h4>Firebase</h4>
+                  <div class="skill-bar">
+                    <div class="skill-progress" data-width="65"></div>
+                  </div>
+                  <span class="skill-percent">65%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">My <span>Projects</span></h2>
+        <p class="section-subtitle">Some of my recent work</p>
+      </div>
+
+      <div class="projects-filter" data-aos="fade-up">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="app">App</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-image">
+            <img src="e-commerce-img.avif" alt="Project 1">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h3>E-commerce Platform</h3>
+                <p>React, Node.js, MongoDB</p>
+                <div class="project-links">
+                  <a href="#" class="link-btn" data-tooltip="Live Demo">
+                    <i class="fas fa-link"></i>
+                  </a>
+                  <a href="#" class="link-btn" data-tooltip="View Details">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>E-commerce Platform</h3>
+            <p>Full-featured online store with payment integration</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="app" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-image">
+            <img src="taffic_project.jpg" alt="Project 2">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h3>Fitness Tracker App</h3>
+                <p>React Native, Firebase</p>
+                <div class="project-links">
+                  <a href="#" class="link-btn" data-tooltip="Live Demo">
+                    <i class="fas fa-link"></i>
+                  </a>
+                  <a href="#" class="link-btn" data-tooltip="View Details">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>Fitness Tracker App</h3>
+            <p>Mobile application for tracking workouts and nutrition</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="design" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-image">
+            <img src="Rewear.jpg" alt="Project 3">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h3>UI Design System</h3>
+                <p>Figma, Adobe XD</p>
+                <div class="project-links">
+                  <a href="#" class="link-btn" data-tooltip="Live Demo">
+                    <i class="fas fa-link"></i>
+                  </a>
+                  <a href="#" class="link-btn" data-tooltip="View Details">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>UI Design System</h3>
+            <p>Comprehensive design system for web applications</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="400">
+          <div class="project-image">
+            <img src="dashboard-img.avif" alt="Project 4">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h3>Analytics Dashboard</h3>
+                <p>Vue.js, D3.js, Express</p>
+                <div class="project-links">
+                  <a href="#" class="link-btn" data-tooltip="Live Demo">
+                    <i class="fas fa-link"></i>
+                  </a>
+                  <a href="#" class="link-btn" data-tooltip="View Details">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>Analytics Dashboard</h3>
+            <p>Interactive data visualization dashboard</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="app" data-aos="fade-up" data-aos-delay="500">
+          <div class="project-image">
+            <img src="social-app-img.avif" alt="Project 5">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h3>Social Media App</h3>
+                <p>Flutter, Firebase</p>
+                <div class="project-links">
+                  <a href="#" class="link-btn" data-tooltip="Live Demo">
+                    <i class="fas fa-link"></i>
+                  </a>
+                  <a href="#" class="link-btn" data-tooltip="View Details">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>Social Media App</h3>
+            <p>Community platform with real-time features</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="design" data-aos="fade-up" data-aos-delay="600">
+          <div class="project-image">
+            <img src="branding-img.avif" alt="Project 6">
+            <div class="project-overlay">
+              <div class="overlay-content">
+                <h3>Brand Identity</h3>
+                <p>Illustrator, Photoshop</p>
+                <div class="project-links">
+                  <a href="#" class="link-btn" data-tooltip="Live Demo">
+                    <i class="fas fa-link"></i>
+                  </a>
+                  <a href="#" class="link-btn" data-tooltip="View Details">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>Brand Identity</h3>
+            <p>Complete branding package for startup</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-more" data-aos="fade-up">
+        <a href="#" class="btn btn-primary btn-magnetic">
+          <span class="btn-text">View All Projects</span>
+          <span class="btn-circle"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Client <span>Testimonials</span></h2>
+        <p class="section-subtitle">What my clients say about me</p>
+      </div>
+
+      <div class="testimonials-slider swiper" data-aos="fade-up">
+        <div class="swiper-wrapper">
+          <div class="testimonial-slide swiper-slide">
+            <div class="testimonial-content">
+              <div class="quote-icon">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p class="testimonial-text">"Working with this developer was an absolute pleasure. They delivered our
+                project ahead of schedule and the quality exceeded our expectations. Will definitely work with them
+                again!"</p>
+              <div class="testimonial-author">
+                <div class="author-image">
+                  <img src="ProfilePic.jpg" alt="Client 1">
+                </div>
+                <div class="author-info">
+                  <h4>John Smith</h4>
+                  <p>CEO, Tech Company</p>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide swiper-slide">
+            <div class="testimonial-content">
+              <div class="quote-icon">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p class="testimonial-text">"The attention to detail and creative problem-solving skills were impressive.
+                They took our vague ideas and turned them into a beautiful, functional product that our users love."</p>
+              <div class="testimonial-author">
+                <div class="author-image">
+                  <img src="client-2.avif" alt="Client 2">
+                </div>
+                <div class="author-info">
+                  <h4>Sarah Johnson</h4>
+                  <p>Marketing Director, Startup</p>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-slide swiper-slide">
+            <div class="testimonial-content">
+              <div class="quote-icon">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p class="testimonial-text">"Exceptional technical skills combined with great communication. They were
+                able to explain complex concepts in simple terms and delivered exactly what we needed."</p>
+              <div class="testimonial-author">
+                <div class="author-image">
+                  <img src="client-3.avif" alt="Client 3">
+                </div>
+                <div class="author-info">
+                  <h4>Michael Brown</h4>
+                  <p>CTO, Enterprise Solutions</p>
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Get In <span>Touch</span></h2>
+        <p class="section-subtitle">Let's work together</p>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-info" data-aos="fade-right">
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Location</h4>
+              <p>San Francisco, CA</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p>your.email@example.com</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Phone</h4>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <h4>Follow Me</h4>
+            <div class="social-links">
+              <a href="#" class="social-icon" data-tooltip="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="#" class="social-icon" data-tooltip="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="social-icon" data-tooltip="Twitter">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon" data-tooltip="Dribbble">
+                <i class="fab fa-dribbble"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form" data-aos="fade-left">
+          <form id="contactForm" class="needs-validation" novalidate>
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+              <div class="invalid-feedback">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder="Your Email" required>
+              <div class="invalid-feedback">Please enter a valid email</div>
+            </div>
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+              <div class="invalid-feedback">Please enter your message</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-magnetic">
+              <span class="btn-text">Send Message</span>
+              <span class="btn-circle"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <div class="logo" data-text="Portfolio">
+            <span>P</span><span>o</span><span>r</span><span>t</span><span>f</span><span>o</span><span>l</span><span>i</span><span>o</span>
+          </div>
+          <p>Creating digital experiences that matter.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+              <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+              <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+              <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Mobile Development</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> SEO Optimization</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Contact Info</h3>
+            <ul>
+              <li><a href="#"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</a></li>
+              <li><a href="#"><i class="fas fa-envelope"></i> your.email@example.com</a></li>
+              <li><a href="#"><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> Your Name. All Rights Reserved.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon" data-tooltip="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="#" class="social-icon" data-tooltip="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-icon" data-tooltip="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Modal -->
+  <div class="project-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-close">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="modal-content">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
